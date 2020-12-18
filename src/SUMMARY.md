@@ -1,4 +1,4 @@
-# Summary
+# Özet
 
 [Giriş](index.md)
 

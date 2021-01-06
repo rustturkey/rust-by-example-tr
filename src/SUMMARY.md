@@ -5,8 +5,8 @@
 - [Hello World(Merhaba Dünya)](hello.md)
     - [Yorumlar](hello/comment.md)
     - [Formatlı Yazdırma](hello/print.md)
-        - [Hata Ayıklama](hello/print/print_debug.md)
-        - [Görüntü](hello/print/print_display.md)
+        - [Hata Ayıkla](hello/print/print_debug.md)
+        - [Görüntüle](hello/print/print_display.md)
             - [Deneme: Liste](hello/print/print_display/testcase_list.md)
         - [Formatlama](hello/print/fmt.md)
 

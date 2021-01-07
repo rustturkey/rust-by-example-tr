@@ -1,63 +1,59 @@
-# Rust by Example
+# Örneklerle Rust
 
-[Rust][rust] is a modern systems programming language focusing on safety, speed,
-and concurrency. It accomplishes these goals by being memory safe without using 
-garbage collection.
+[Rust][rust] güvenlik, hız ve eşzamanlılık üzerine odaklanan bir modern sistem programlama dilidir. Bu hedefleri çöp toplama(garbage collection) kullanmadan güvenli bellek ile gerçekler.
 
-Rust by Example (RBE) is a collection of runnable examples that illustrate various Rust
-concepts and standard libraries. To get even more out of these examples, don't forget
-to [install Rust locally][install] and check out the [official docs][std]. 
-Additionally for the curious, you can also [check out the source code for this site][home].
+Örneklerle Rust (ÖR) (RBE) çeşitli Rust kavramlarını ve standart kütüphaneleri gösteren çalıştırılabilir örneklerden oluşan bir koleksiyondur. Bu örneklerden daha da fazlasını elde etmek için [Rust'ı yerel olarak kurma][install] 'yı ve [resmi belgeler][std] 'e göz atmayı unutmayın.  
+Ayrıca meraklıların incelemesi için [sitenin kaynak kodu][home].
 
-Now let's begin!
+Şimdi, hadi başlayalım!
 
-- [Hello World](hello.md) - Start with a traditional Hello World program.
+- [Hello World(Merhaba Dünya)](hello.md) - Geleneksel Hello World(Merhaba Dünya) programı ile başlayın.
 
-- [Primitives](primitives.md) - Learn about signed integers, unsigned integers and other primitives.
+- [Temeller](primitives.md) - İşaretli, işaretsiz tamsayılar ve diğer temeller hakkında öğrenin.
 
-- [Custom Types](custom_types.md) - `struct` and `enum`.
+- [Özel Tipler](custom_types.md) - `struct` ve `enum`.
 
-- [Variable Bindings](variable_bindings.md) - mutable bindings, scope, shadowing.
+- [Değişken Bağlama](variable_bindings.md) - değişebilir bağlama, kapsam, gölgeleme.
 
-- [Types](types.md) - Learn about changing and defining types.
+- [Tipler](types.md) - Tipleri tanımlama ve değiştirme hakkında öğrenin.
 
-- [Conversion](conversion.md)
+- [Dönüşüm](conversion.md)
 
-- [Expressions](expression.md)
+- [İfade](expression.md)
 
-- [Flow of Control](flow_control.md) - `if`/`else`, `for`, and others.
+- [Kontrol Akışı](flow_control.md) - `if`/`else`, `for`, ve diğerleri.
 
-- [Functions](fn.md) - Learn about Methods, Closures and High Order Functions.
+- [Fonksiyonlar](fn.md) - Metotlar, Closure'lar(Kapatıcılar) ve Üst Seviye Fonksiyonlar hakkında öğrenin.
 
-- [Modules](mod.md) - Organize code using modules
+- [Modüller](mod.md) - Modüller ile kodu düzenleme.
 
-- [Crates](crates.md) - A crate is a compilation unit in Rust. Learn to create a library.
+- [Crate'ler(Sandıklamak)](crates.md) - Crate(sandık) Rust'ta bir derleme birimidir. Bir kütüphane oluşturmayı öğrenin.
 
-- [Cargo](cargo.md) - Go through some basic features of the official Rust package management tool.
+- [Cargo](cargo.md) - Resmi Rust paket yönetim aracının temel özelliklerini gözden geçirin.
 
-- [Attributes](attribute.md) - An attribute is metadata applied to some module, crate or item.
+- [Özellikler](attribute.md) - Bir özellik modüle, crate(sandık)'a veya öğeye uygulanan üst(meta) verilerdir.
 
-- [Generics](generics.md) - Learn about writing a function or data type which can work for multiple types of arguments.
+- [Generic'ler(Genelleyiciler)](generics.md) - Birden çok argüman türü için işe yarayabilecek bir fonksiyon veya veri tipi yazmayı öğrenin.
 
-- [Scoping rules](scope.md) - Scopes play an important part in ownership, borrowing, and lifetimes.
+- [Kapsam Kuralları](scope.md) - Kapsamlar sahiplik(ownership), borrowing(borçlanma) ve lifetime(ömür) gibi özelliklerde önemli yer tutar.
 
-- [Traits](trait.md) - A trait is a collection of methods defined for an unknown type: `Self`
+- [Trait(Nitelik)](trait.md) - Bir trait(nitelik) bilinmeyen bir tür için tanımlanan metotlar koleksiyonudur: `Self`
 
-- [Macros](macros.md)
+- [Macro'lar](macros.md)
 
-- [Error handling](error.md) - Learn Rust way of handling failures.
+- [Hata Yönetimi](error.md) - Rust ile hataları ele alma yöntemlerini öğrenin.
 
-- [Std library types](std.md) - Learn about some custom types provided by `std` library.
+- [Std kütüphanesi tipleri](std.md) - Std kütüphanesi tarafından sağlanan bazı özel tipler hakkında bilgi edinin.
 
-- [Std misc](std_misc.md) - More custom types for file handling, threads.
+- [Std diğer](std_misc.md) - Dosya işleme için daha özel tipler, thread'ler(iş parçacıkları).
 
-- [Testing](testing.md) - All sorts of testing in Rust.
+- [Deneme(Test)](testing.md) - Rust'ın tüm testlerinin listesi.
 
-- [Unsafe Operations](unsafe.md)
+- [Güvensiz İşlemler](unsafe.md)
 
-- [Compatibility](compatibility.md)
+- [Uyumluluk](compatibility.md)
 
-- [Meta](meta.md) - Documentation, Benchmarking.
+- [Üst](meta.md) - Dokümantasyon, kıyaslama.
 
 
 [rust]: https://www.rust-lang.org/

@@ -1,13 +1,12 @@
-# Types
+# Tipler
 
-Rust provides several mechanisms to change or define the type of primitive and
-user defined types. The following sections cover:
-* [Casting] between primitive types
-* Specifying the desired type of [literals]
-* Using [type inference]
-* [Aliasing] types
+Rust, temel ve kullanıcı tanımlı tiplerin türünü değiştirmek veya tanımlamak için çeşitli mekanizmalar sağlar. Şunları kapsar:
+* Temel tipler arasında [döküm]
+* [Değişmezler] arasından istenilen tipe özelleştirme
+* [Tip çıkarımı] kullanımı
+*  Tipleri [takma adlandırmak]
 
-[Casting]: types/cast.md
-[literals]: types/literals.md
-[type inference]: types/inference.md
-[Aliasing]: types/alias.md
+[döküm]: types/cast.md
+[Değişmezler]: types/literals.md
+[Tip çıkarımı]: types/inference.md
+[takma adlandırmak]: types/alias.md

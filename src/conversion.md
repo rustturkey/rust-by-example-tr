@@ -1,14 +1,10 @@
-# Conversion
+# Dönüşüm
 
-Primitive types can be converted to each other through [casting].
+Temel tipler, [döküm] yoluyla birbirine dönüştürülebilir.
 
-Rust addresses conversion between custom types (i.e., `struct` and `enum`)
-by the use of [traits]. The generic
-conversions will use the [`From`] and [`Into`] traits. However there are more
-specific ones for the more common cases, in particular when converting to and
-from `String`s.
+Rust [nitelik]'leri kullanarak özel tipler(yani `struct` ve `enum`) arasındaki dönüşümü ele alır. Genel dönüşümler, [`From`] ve [`Into`] niteliklerini kullancaktır. Bununla birlikte, daha yaygın durumlar için, özellikle `String`(dizeler)(katarlar)dan veya dizelere dönüşüm yapılırken daha spesifik olanları vardır.
 
-[casting]: types/cast.md
-[traits]: trait.md
+[döküm]: types/cast.md
+[nitelik]: trait.md
 [`From`]: https://doc.rust-lang.org/std/convert/trait.From.html
 [`Into`]: https://doc.rust-lang.org/std/convert/trait.Into.html

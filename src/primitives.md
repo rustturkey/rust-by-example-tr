@@ -1,63 +1,61 @@
-# Primitives
+# Temeller
 
-Rust provides access to a wide variety of `primitives`. A sample includes:
+Rust çok çeşitli `temeller`e (primitive) erişim sağlar. İçeren bir örnek:
 
 
-### Scalar Types
+### Skaler(Sayısal) Tipler
 
-* signed integers: `i8`, `i16`, `i32`, `i64`, `i128` and `isize` (pointer size)
-* unsigned integers: `u8`, `u16`, `u32`, `u64`, `u128` and `usize` (pointer
-  size)
-* floating point: `f32`, `f64`
-* `char` Unicode scalar values like `'a'`, `'α'` and `'∞'` (4 bytes each)
-* `bool` either `true` or `false`
-* and the unit type `()`, whose only possible value is an empty tuple: `()`
+* işaretli tamsayılar: `i8`, `i16`, `i32`, `i64`, `i128` and `isize` (pointer(işaretçi) boyutu)
+* işaretsiz tamsayılar: `u8`, `u16`, `u32`, `u64`, `u128` and `usize` (pointer(işaretçi)
+  boyutu)
+* kayar noktalı sayılar: `f32`, `f64`
+* `char` Uluslararası dil desteği sayısallar `'a'`, `'α'` ve `'∞'` (her biri 4 byte)
+* `bool`  `true` (doğru değeri) veya `false` (yanlış değeri)
+* ve birim tipi `()`, tek olası değeri boş değişken grubu: `()`
 
-Despite the value of a unit type being a tuple, it is not considered a
-compound type because it does not contain multiple values. 
+Bir birim tipinin değeri bir boş değişken grubu olmasına rağmen, birden çok değer içermediği için birleşik tip olarak kabul edilemez.
 
-### Compound Types
+### Birleşik Tipler
 
-* arrays like `[1, 2, 3]`
-* tuples like `(1, true)`
+* diziler şöyledir: `[1, 2, 3]`
+* değişken grupları şöyledir: `(1, true)`
 
-Variables can always be *type annotated*. Numbers may additionally be
-annotated via a *suffix* or *by default*. Integers default to `i32` and
-floats to `f64`. Note that Rust can also infer types from context.
+Değişkenler her zaman *tip açıklamalı* olabilirler. Numaralara ek olarak bir *son ek* veya *varsayılan* şekilde bir açıklama eklenebilir. Tamsayılar varsayılan olarak `i32` 'dir
+ve kayar noktalı sayılar `f64`. Rust'ın tipleri bağlamdan da çıkarabileceğini unutmayın.
 
 ```rust,editable,ignore,mdbook-runnable
 fn main() {
-    // Variables can be type annotated.
+    // Değişkenler tip açıklamalı olabilir.
     let logical: bool = true;
 
-    let a_float: f64 = 1.0;  // Regular annotation
-    let an_integer   = 5i32; // Suffix annotation
+    let a_float: f64 = 1.0;  // Sıradan açıklama
+    let an_integer   = 5i32; // Son ek ile açıklama
 
-    // Or a default will be used.
+    // Ya da varsayılan kullanılabilir.
     let default_float   = 3.0; // `f64`
     let default_integer = 7;   // `i32`
     
-    // A type can also be inferred from context 
-    let mut inferred_type = 12; // Type i64 is inferred from another line
+    // Tip bağlamdan da çıkarılabilir. 
+    let mut inferred_type = 12; // i64 başka satırdan anlaşılmıştır
     inferred_type = 4294967296i64;
     
-    // A mutable variable's value can be changed.
-    let mut mutable = 12; // Mutable `i32`
+    // Mutable(değişebilir) değişkenin değeri değişebilir.
+    let mut mutable = 12; // Değişebilir `i32`
     mutable = 21;
     
-    // Error! The type of a variable can't be changed.
+    // Hata! Değişkenin tipi değişemez!
     mutable = true;
     
-    // Variables can be overwritten with shadowing.
+    // Gölgeleme ile değişkenlerin üzerine istenen tipte yazılabilir.
     let mutable = true;
 }
 ```
 
-### See also:
+### Ayrıca Bakın:
 
-[the `std` library][std], [`mut`][mut], [`inference`][inference], and [`shadowing`][shadowing]
+[`std` kütüphanesi][std], [`değişilebilirlik`][mut], [`çıkarım`][inference], ve [`gölgeleme`][shadowing]
 
 [std]: https://doc.rust-lang.org/std/
-[mut]: variable_bindings/mut.md
-[inference]: types/inference.md
-[shadowing]: variable_bindings/scope.md
+[değişilebilirlik]: variable_bindings/mut.md
+[çıkarım]: types/inference.md
+[gölgeleme]: variable_bindings/scope.md

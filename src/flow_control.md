@@ -1,4 +1,4 @@
-# Flow of Control
+# Kontrol Akışı
 
-An essential part of any programming languages are ways to modify control flow:
-`if`/`else`, `for`, and others. Let's talk about them in Rust.
+Herhangi bir programlama dilinin oldukça önemli bir parçası kontrol akışını değiştirmenin yollarıdır:
+`if`/`else`, `for`, ve diğerleri. Rust'taki onlar hakkında konuşalım.

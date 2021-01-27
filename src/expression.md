@@ -1,34 +1,30 @@
-# Expressions
+# Ifadeler
 
-A Rust program is (mostly) made up of a series of statements:
+Bir Rust programı (çoğunlukla) bir dizi ifadelerden oluşur:
 
 ```
 fn main() {
-    // statement
-    // statement
-    // statement
+    // ifade
+    // ifade
+    // ifade
 }
 ```
 
-There are a few kinds of statements in Rust. The most common two are declaring
-a variable binding, and using a `;` with an expression:
+Rust'ta birkaç tür ifade vardır. En yaygın ikisi değişken bağlayıcı bildirimi, ve bir ifade ile `;` kullanımıdır:
 
 ```
 fn main() {
-    // variable binding
+    // değişken bağlayıcı
     let x = 5;
 
-    // expression;
+    // ifade;
     x;
     x + 1;
     15;
 }
 ```
 
-Blocks are expressions too, so they can be used as values in
-assignments. The last expression in the block will be assigned to the
-place expression such as a local variable. However, if the last expression of the block ends with a
-semicolon, the return value will be `()`.
+Bloklar da ifadelerdir, bu sebeple atamalarda değer olarak kullanılabilirler. Bloktaki son ifade, yerel bir değişken gibi yer ifadesine atanacaktır. Bununla birlikte, bloğun son ifadesi noktalı virgülle biterse, dönüş değeri `()` olacaktır.
 
 ```rust,editable
 fn main() {
@@ -38,12 +34,12 @@ fn main() {
         let x_squared = x * x;
         let x_cube = x_squared * x;
 
-        // This expression will be assigned to `y`
+        // Bu ifade `y` ye atanacaktır
         x_cube + x_squared + x
     };
 
     let z = {
-        // The semicolon suppresses this expression and `()` is assigned to `z`
+        // Noktalı virgül bu ifadeyi önler(durdurur) ve `()` , `z` ye atanır
         2 * x;
     };
 

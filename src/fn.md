@@ -1,4 +1,4 @@
-# Functions
+# Fonksiyonlar
 
 Fonksiyonlar `fn` anahtar sözcükleriyle bildirilirler. Argümanları değişkenlerdeki gibi tip açıklamalıdır, ve, fonksiyon bir değer döndürürse dönüş türü bir oktan sonra bildirilmelidir `->`.
 

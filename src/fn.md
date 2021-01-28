@@ -1,34 +1,31 @@
 # Functions
 
-Functions are declared using the `fn` keyword. Its arguments are type
-annotated, just like variables, and, if the function returns a value, the
-return type must be specified after an arrow `->`.
+Fonksiyonlar `fn` anahtar sözcükleriyle bildirilirler. Argümanları değişkenlerdeki gibi tip açıklamalıdır, ve, fonksiyon bir değer döndürürse dönüş türü bir oktan sonra bildirilmelidir `->`.
 
-The final expression in the function will be used as return value.
-Alternatively, the `return` statement can be used to return a value earlier
-from within the function, even from inside loops or `if` statements.
+Fonksiyonlardaki son ifade dönüş değeri olarak kullanılacaktır.
+Alternatif olarak `return` ifadesi fonksiyonun içinden, döngülerin içinden ve hatta `if` ifadelerinden bile daha önce bir değer döndürmek için kullanılabilir.
 
-Let's rewrite FizzBuzz using functions!
+Fonksiyonları kullanarak FizzBuzz(basit bir algoritma türü)'ı yeniden yazalım!
 
 ```rust,editable
-// Unlike C/C++, there's no restriction on the order of function definitions
+//C/C++'taki gibi fonksiyon bildirim sırası diye bir kısıtlama yok!
 fn main() {
-    // We can use this function here, and define it somewhere later
+    // Fonksiyonu burada kullanabiliriz, ve sonra bir yerde bildiririz.
     fizzbuzz_to(100);
 }
 
-// Function that returns a boolean value
+// Boolean değer döndüren fonksiyon
 fn is_divisible_by(lhs: u32, rhs: u32) -> bool {
-    // Corner case, early return
+    // Köşe durumu, erken dönüş
     if rhs == 0 {
         return false;
     }
 
-    // This is an expression, the `return` keyword is not necessary here
+    // Bu bir ifade, `return` anahtar kelimesi burada gerekli değil
     lhs % rhs == 0
 }
 
-// Functions that "don't" return a value, actually return the unit type `()`
+// "değer döndürmeyen" fonksiyonlar,aslında birim tipini döndürürler `()`
 fn fizzbuzz(n: u32) -> () {
     if is_divisible_by(n, 15) {
         println!("fizzbuzz");
@@ -41,8 +38,7 @@ fn fizzbuzz(n: u32) -> () {
     }
 }
 
-// When a function returns `()`, the return type can be omitted from the
-// signature
+// Fonksiyon `()` döndürdüğünde, dönüş tipi imzadan çıkartılabilir
 fn fizzbuzz_to(n: u32) {
     for n in 1..n + 1 {
         fizzbuzz(n);

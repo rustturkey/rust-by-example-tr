@@ -25,7 +25,7 @@ fn is_divisible_by(lhs: u32, rhs: u32) -> bool {
     lhs % rhs == 0
 }
 
-// "değer döndürmeyen" fonksiyonlar,aslında birim tipini döndürürler `()`
+// Değer döndürmeyen fonksiyonlar,aslında birim tipini döndürürler `()`
 fn fizzbuzz(n: u32) -> () {
     if is_divisible_by(n, 15) {
         println!("fizzbuzz");

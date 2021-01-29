@@ -8,7 +8,7 @@ Alternatif olarak `return` ifadesi fonksiyonun içinden, döngülerin içinden v
 Fonksiyonları kullanarak FizzBuzz(basit bir algoritma türü)'ı yeniden yazalım!
 
 ```rust,editable
-//C/C++'taki gibi fonksiyon bildirim sırası diye bir kısıtlama yok!
+// C/C++'taki gibi fonksiyon bildirim sırası diye bir kısıtlama yok!
 fn main() {
     // Fonksiyonu burada kullanabiliriz, ve sonra bir yerde bildiririz.
     fizzbuzz_to(100);

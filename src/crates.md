@@ -1,12 +1,8 @@
-# Crates
+# Crate'ler(Sandıklamak)
 
-A crate is a compilation unit in Rust. Whenever `rustc some_file.rs` is called,
-`some_file.rs` is treated as the *crate file*. If `some_file.rs` has `mod`
-declarations in it, then the contents of the module files would be inserted in
-places where `mod` declarations in the crate file are found, *before* running
-the compiler over it. In other words, modules do *not* get compiled
-individually, only crates get compiled.
+Crate Rust'ta bir derleme birimidir. `rustc herhangi_bir_dosya.rs` çağrıldığında,
+`herhangi_bir_dosya.rs`  *crate(sandık) dosyası*  olarak kabul edilir. Eğer `herhangi_bir_dosya.rs` 'da `mod`
+bildirimi varsa, daha sonra modül dosyalarının içeriği derleyici üzerinde çalışmadan *önce* crate(sandık) dosyasındaki `mod` bildirimlerinin bulunduğu yere eklenir. Diğer bir deyişle, modüller ayrı ayrı derlen*mez* sadece crate'ler(sandıklar) derlenir.
 
-A crate can be compiled into a binary or into a library. By default, `rustc`
-will produce a binary from a crate. This behavior can be overridden by passing
-the `--crate-type` flag to `lib`.
+Bir crate(sandık) bir ikili dosyaya veya kütüphaneye derlenebilir. Varsayılan olarak, `rustc`
+bir crate'den(sandık) bir ikili dosya üretecektir. Bu davranış `--crate-type` bayrağını `lib` 'e ileterek geçersiz kılınabilir.

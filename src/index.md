@@ -27,7 +27,7 @@ Ayrıca meraklıların incelemesi için [sitenin kaynak kodu][home].
 
 - [Modüller](mod.md) - Modüller ile kodu düzenleme.
 
-- [Crate'ler(Sandıklamak)](crates.md) - Crate(sandık) Rust'ta bir derleme birimidir. Bir kütüphane oluşturmayı öğrenin.
+- [Crate'ler(Sandıklar)](crates.md) - Crate(sandık) Rust'ta bir derleme birimidir. Bir kütüphane oluşturmayı öğrenin.
 
 - [Cargo](cargo.md) - Resmi Rust paket yönetim aracının temel özelliklerini gözden geçirin.
 

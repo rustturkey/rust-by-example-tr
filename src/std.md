@@ -2,7 +2,6 @@
 
 `std` kütüphanesi `temel`ler üzerinde büyük ölçüde genişleyen birçok özel tip sağlar. Bunlardan bazıları:
 
-* growable `String`s like: `"hello world"`
 * büyütülebilir `String`ler gibi: `"hello world"`
 * büyütülebilir vector'ler: `[1, 2, 3]`
 * option tipleri: `Option<i32>`

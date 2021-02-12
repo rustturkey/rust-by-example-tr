@@ -1,17 +1,17 @@
-# Std library types
+# Std kütüphanesi tipleri
 
-The `std` library provides many custom types which expands drastically on
-the `primitives`. Some of these include:
+`std` kütüphanesi `temel`ler üzerinde büyük ölçüde genişleyen birçok özel tip sağlar. Bunlardan bazıları:
 
 * growable `String`s like: `"hello world"`
-* growable vectors: `[1, 2, 3]`
-* optional types: `Option<i32>`
-* error handling types: `Result<i32, i32>`
-* heap allocated pointers: `Box<i32>`
+* büyütülebilir `String`ler gibi: `"hello world"`
+* büyütülebilir vector'ler: `[1, 2, 3]`
+* option tipleri: `Option<i32>`
+* hata yönetimi tipleri: `Result<i32, i32>`
+* bellekte heap(öbek) olarak yer ayrılan pointer'lar: `Box<i32>`
 
-### See also:
+### Ayrıca bakın:
 
-[primitives] and [the std library][std]
+[temeller] and [std kütüphanesi][std]
 
-[primitives]: primitives.md
+[temeller]: primitives.md
 [std]: https://doc.rust-lang.org/std/

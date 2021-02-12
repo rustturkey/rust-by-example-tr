@@ -1,5 +1,4 @@
-# Scoping rules
+# Kapsam Kuralları
 
-Scopes play an important part in ownership, borrowing, and lifetimes.
-That is, they indicate to the compiler when borrows are valid, when 
-resources can be freed, and when variables are created or destroyed.
+Kapsamlar, sahiplik(ownership) ödünç alma(borrowing) ve yaşam süreleri(lifetime) gibi durumlarda önemli bir yer tutar.
+Ödünç alanların ne zaman geçerli olduğunu, kaynakların ne zaman serbest bırakılabileceğini ve değişkenlerin ne zaman oluşturulduğu veya yok edildiğini derleyiciye gösterirler.

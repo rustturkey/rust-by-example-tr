@@ -1,18 +1,14 @@
-# Crates
+# Crate'ler (Sandıklar)
 
-The `crate_type` attribute can be used to tell the compiler whether a crate is
-a binary or a library (and even which type of library), and the `crate_name`
-attribute can be used to set the name of the crate.
+`crate_type` özelliği, derleyiciye crate'in bir binary(ikili) dosya mı yoksa kütüphane dosyası mı olduğunu bildirmek  için kullanılabilir, (ve hatta hangi tipte bir kütüphane olduğunu), ve `crate_name` özelliği, crate'in adını ayarlamak için kullanılabilir.
 
-However, it is important to note that both the `crate_type` and `crate_name`
-attributes have **no** effect whatsoever when using Cargo, the Rust package
-manager. Since Cargo is used for the majority of Rust projects, this means
-real-world uses of `crate_type` and `crate_name` are relatively limited.
+Bununla birlikte, Rust paket yöneticisi Cargo kullanırken hem `crate_type` hem de `crate_name`
+özelliklerinin **hiçbir** etkisi olmadığını unutmamak önemlidir. Cargo, Rust projelerinin büyük çoğunluğunda kullanıldığından,  `crate_type` ve `crate_name`'in gerçek dünyadaki kullanımlarının göreli olarak sınırlı olduğu anlamına gelir.
 
 ```rust,editable
-// This crate is a library
+// Bu crate bir kütüphanedir(library)
 #![crate_type = "lib"]
-// The library is named "rary"
+// Bu kütüphanenin adı "rary"dir
 #![crate_name = "rary"]
 
 pub fn public_function() {
@@ -30,8 +26,7 @@ pub fn indirect_access() {
 }
 ```
 
-When the `crate_type` attribute is used, we no longer need to pass the
-`--crate-type` flag to `rustc`.
+`crate_type` özelliği kullanıldığında, artık `--crate-type` bayrağını `rustc` iletmek gerekmez.
 
 ```shell
 $ rustc lib.rs

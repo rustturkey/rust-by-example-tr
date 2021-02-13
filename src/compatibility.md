@@ -1,7 +1,5 @@
-# Compatibility
+# Uyumluluk
 
-The Rust language is fastly evolving, and because of this certain compatibility
-issues can arise, despite efforts to ensure forwards-compatibility wherever
-possible.
+Rust dili hızla gelişmekte, ve bu nedenle mümkün olan her yerde ileriye dönük uyumluluğu sağlama çabalarına rağmen belirli uyumluluk sorunları ortaya çıkabiliyor.
 
-* [Raw identifiers](compatibility/raw_identifiers.md)
+* [Ham tanımlayıcılar](compatibility/raw_identifiers.md)

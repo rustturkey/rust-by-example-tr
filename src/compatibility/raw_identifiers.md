@@ -1,17 +1,10 @@
-# Raw identifiers
+# Ham Tanımlayıcılar
 
-Rust, like many programming languages, has the concept of "keywords".
-These identifiers mean something to the language, and so you cannot use them in
-places like variable names, function names, and other places.
-Raw identifiers let you use keywords where they would not normally be allowed.
-This is particularly useful when Rust introduces new keywords, and a library
-using an older edition of Rust has a variable or function with the same name
-as a keyword introduced in a newer edition.
+Rust, birçok programlama dilinde olduğu gibi "keywords" yani "anahtar kelimeler" konseptini içerir.
+Bu tanımlayıcılar dil için bir şeyler ifade eder, bu nedenle onları değişken adı, fonksiyon adı ve bunlar gibi yerlerde kullanamazsınız. Ham tanımlayıcılar normalde izin verilmediği yerlerde bu anahtar kelimeleri kullanabilmenize izin verir.
+Bu, özellikle; Rust yeni anahtar kelimeler sunduğunda ve Rust'ın eski bir sürümünü kullanan bir kütüphane, daha yeni bir sürümde tanıtılan bir anahtar kelimelerle aynı ada sahip bir değişken veya fonksiyona sahip olduğunda çok yararlıdır.
 
-For example, consider a crate `foo` compiled with the 2015 edition of Rust that
-exports a function named `try`. This keyword is reserved for a new feature in
-the 2018 edition, so without raw identifiers, we would have no way to name the
-function.
+Örneğin, `try` isimli bir fonksiyonu dışa aktaran `foo` isimli  bir crate'in 2015 versiyon Rust ile derlendiğini düşünün. Bu anahtar kelime 2018 sürümündeki yeni bir özellik için ayrılmıştır, bu nedenle ham tanımlayıcılar olmasaydı bu fonksiyonu adlandırmanın bir yolu olmazdı.
 
 ```rust,ignore
 extern crate foo;
@@ -21,7 +14,7 @@ fn main() {
 }
 ```
 
-You'll get this error:
+Şu hatayı alırdınız:
 
 ```text
 error: expected identifier, found keyword `try`
@@ -31,7 +24,7 @@ error: expected identifier, found keyword `try`
   |      ^^^ expected identifier, found keyword
 ```
 
-You can write this with a raw identifier:
+Ama aynı kodu ham tanımlayıcıyla yazabilirsiniz:
 
 ```rust,ignore
 extern crate foo;

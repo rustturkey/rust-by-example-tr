@@ -1,40 +1,30 @@
 # macro_rules!
 
-Rust provides a powerful macro system that allows metaprogramming. As you've
-seen in previous chapters, macros look like functions, except that their name
-ends with a bang `!`, but instead of generating a function call, macros are
-expanded into source code that gets compiled with the rest of the program.
-However, unlike macros in C and other languages, Rust macros are expanded into
-abstract syntax trees, rather than string preprocessing, so you don't get
-unexpected precedence bugs.
+Rust, metaprogramlamaya izin veren güçlü bir macro sistemi sağlar. Önceki bölümlerde gördüğünüz gibi, macro'lar fonksiyonlara benziyor, ancak adlarının bir `!` patlamasıyla bitmesi dışında, ancak bir fonksiyon çağrısı oluşturmak yerine, macro'lar programın geri kalanıyla derlenen kaynak koduna genişletilir.
+Bununla birlikte, C ve diğer dillerdeki macro'lardan farklı olarak, Rust macro'ları string ön işlemesi yerine soyut(abstract) söz dizimi ağaçlarına genişletilir, böylece beklenmedik öncelik hataları alınmaz.
 
-Macros are created using the `macro_rules!` macro.
+Macro'lar `macro_rules!` macro'su kullanılarak oluşturulur.
 
 ```rust,editable
-// This is a simple macro named `say_hello`.
+// `say_hello` isimli basit bir macro.
 macro_rules! say_hello {
-    // `()` indicates that the macro takes no argument.
+    // `()` macro'nun argüman almadığını belirtir.
     () => {
-        // The macro will expand into the contents of this block.
+        // Macro bu bloğun içeriklerini genişletir.
         println!("Hello!");
     };
 }
 
 fn main() {
-    // This call will expand into `println!("Hello");`
+    // Bu çağrım `println!("Hello");` e genişletir
     say_hello!()
 }
 ```
 
-So why are macros useful?
+Macro'lar neden kullanışlıdır?
 
-1. Don't repeat yourself. There are many cases where you may need similar
-   functionality in multiple places but with different types. Often, writing a
-   macro is a useful way to avoid repeating code. (More on this later)
+1. Kendini tekrar etmez. Birden çok yerde, ancak farklı türlerde benzer fonksiyoneliteye ihtiyaç duyabileceğiniz birçok durum vardır. Genellikle bir macro yazmak, kodun tekrarlanmasını önlemenin yararlı bir yoludur. (Bununla ilgili daha fazlası sonra...)
 
-2. Domain-specific languages. Macros allow you to define special syntax for a
-   specific purpose. (More on this later)
+2. Etki alanına özgü diller. Macro'lar belirli bir amaç için özel söz dizimi tanımlanmasına izin verir.(Bununla ilgili daha fazlası sonra...)
 
-3. Variadic interfaces. Sometimes you want to define an interface that takes a
-   variable number of arguments. An example is `println!` which could take any
-   number of arguments, depending on the format string!. (More on this later)
+3. Çeşitli interface(arayüz)'ler. Bazen değişken sayısında argüman alan bir interface tanımlamak istersiniz. Bir örnek olarak `println!`  string'in biçimine bağlı olarak herhangi bir sayıda argüman alabilir.(Bununla ilgili daha fazlası sonra...)

@@ -1,22 +1,21 @@
-# Testing
+# Deneme(Test)
 
-Rust is a programming language that cares a lot about correctness and it
-includes support for writing software tests within the language itself.
+Rust doğruluğu çok önemseyen bir programlama dilidir ve dil kendi içinde yazılım testleri desteği içerir. 
 
-Testing comes in three styles:
+Testler üç şekildedir:
 
-* [Unit][unit] testing.
-* [Doc][doc] testing.
-* [Integration][integration] testing.
+* [Unit(Birim)][unit] testi.
+* [Doc(Dokümanstasyon)][doc] testi.
+* [Integration(Entegrasyon)][integration] testi.
 
-Also Rust has support for specifying additional dependencies for tests:
+Aynı zamanda Rust özelleştirilmiş eklemeli bağımsızlıkları da destekler: 
 
-* [Dev-dependencies][dev-dependencies]
+* [yazılımcı bağımsızlıkları][dev-dependencies]
 
-## See Also
+## Ayrıca bakınız
 
-* [The Book][doc-testing] chapter on testing
-* [API Guidelines][doc-nursery] on doc-testing
+* [İngilizce Rust kitabı][doc-testing] ; bölüm testlerinde
+* [İngilizce Rust dokümanı][doc-nursery] ; dokümantasyon testlerinde
 
 [unit]: testing/unit_testing.md
 [doc]: testing/doc_testing.md

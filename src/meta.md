@@ -1,12 +1,9 @@
-# Meta
+# Üst
 
-Some topics aren't exactly relevant to how you program but provide you
-tooling or infrastructure support which just makes things better for
-everyone. These topics include:
+Bazı konular nasıl programladığınızla tam olarak alakalı değildir, ancak size işleri herkes için daha iyi hale getiren araç veya altyapı destekleri sağlar. Bu konu şunları içerir:
 
-- [Documentation][doc]: Generate library documentation for users via the included
-  `rustdoc`.
-- [Playpen][playpen]: Integrate the Rust Playpen(also known as the Rust Playground) in your documentation.
+- [Dokümantasyon][doc]: `rustdoc`ı dahil ederek kullanıcılar için kütüphane dokümantasyonu oluşturun.
+- [Playpen][playpen]: Rust Playpen(Rust Playground olarak da bilinen)'i dokümantasyonunuza entegre edin.
 
 [doc]: meta/doc.md
 [playpen]: meta/playpen.md

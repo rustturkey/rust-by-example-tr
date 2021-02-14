@@ -1,17 +1,16 @@
-# Std misc
+# Std diğer
 
-Many other types are provided by the std library to support
-things such as:
+Std kütüphanesinin sağladığı desteklenen diğer birçok tipler: 
 
-* Threads
-* Channels
-* File I/O
+* Thread'ler(İplikler)
+* Channel'lar(Kanallar)
+* File I/O(Dosya Girdi Çıktı)
 
-These expand beyond what the [primitives] provide.
+Bunlar[temeller]in sağladıklarını genişletirler.
 
-### See also:
+### Ayrıca bakın:
 
-[primitives] and [the std library][std]
+[temeller] ve [std kütüphanesi İngilizce dokümantasyon][std]
 
-[primitives]: primitives.md
+[temeller]: primitives.md
 [std]: https://doc.rust-lang.org/std/

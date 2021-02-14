@@ -1,24 +1,23 @@
-# Custom
+# Özel 
 
-Some conditionals like `target_os` are implicitly provided by `rustc`, but
-custom conditionals must be passed to `rustc` using the `--cfg` flag.
+`target_os` gibi bazı koşul ifadeleri dolaylı olarak `rustc` tarafından sağlanır, ama özel koşul ifadeleri `--cfg` bayrağı kullanılarak `rustc`ye iletilmelidir.
 
 ```rust,editable,ignore,mdbook-runnable
-#[cfg(some_condition)]
-fn conditional_function() {
-    println!("condition met!");
+#[cfg(birtakim_kosullar)]
+fn kosullu_fonksiyon() {
+    println!("kosul karsilandi!");
 }
 
 fn main() {
-    conditional_function();
+    kosullu_fonksiyon();
 }
 ```
 
-Try to run this to see what happens without the custom `cfg` flag.
+Bunu özel `cfg` bayrağı olmadan çalıştırın ve bakın neler oluyor.
 
-With the custom `cfg` flag:
+Özel `cfg` bayrağıyla:
 
 ```shell
-$ rustc --cfg some_condition custom.rs && ./custom
-condition met!
+$ rustc --cfg birtakim_kosullar custom.rs && ./custom
+kosul karsilandi!
 ```

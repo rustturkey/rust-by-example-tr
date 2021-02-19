@@ -1,12 +1,8 @@
-# Build Scripts
+# Betik(Script) Oluşturmak
 
-Sometimes a normal build from `cargo` is not enough. Perhaps your crate needs
-some pre-requisites before `cargo` will successfully compile, things like code
-generation, or some native code that needs to be compiled. To solve this problem
-we have build scripts that Cargo can run.
+Bazen `cargo` ile normal oluşturmalar yeterli olmaz. Belki `cargo` başarılı bir şekilde derlenmeden önce crate'inizin bazı ön koşullara, veya derlenmesi gereken bazı yerel kodlara ihtiyacı vardır. Bu problemi çözmek için Cargo'nun çalıştırabileceği bazı betikler yazarız.
 
-To add a build script to your package it can either be specified in the
-`Cargo.toml` as follows:
+Paketinize betik eklemek için, `Cargo.toml` dosyasında aşağıdaki gibi belirtilebilir:
 
 ```toml
 [package]
@@ -14,25 +10,19 @@ To add a build script to your package it can either be specified in the
 build = "build.rs"
 ```
 
-Otherwise Cargo will look for a `build.rs` file in the project directory by
-default.
+Aksi halde Cargo varsayılan olarak proje dizinindeki `build.rs` dosyasını kullanacaktır.
 
-## How to use a build script
+## Yazılmış betiği nasıl kullanırız
 
-The build script is simply another Rust file that will be compiled and invoked
-prior to compiling anything else in the package. Hence it can be used to fulfill
-pre-requisites of your crate.
+Betik paketteki herhangi bir şeyi derlemeden önce derlenecek ve çağrılacak başka bir Rust dosyasıdır. Dolayısıyla crate'inizin ön koşullarını yerine getirmek için kullanılabilir.
 
-Cargo provides the script with inputs via environment variables [specified
-here] that can be used.
+Cargo betiğe, [burada belirtilen][specified here] ve kullanılabilecek ortam değişkenleri aracılığıyla input(girdi)'lar sağlar.
 
-The script provides output via stdout. All lines printed are written to
-`target/debug/build/<pkg>/output`. Further, lines prefixed with `cargo:` will be
-interpreted by Cargo directly and hence can be used to define parameters for the
-package's compilation.
+Betik, stdout aracılığıyla output(çıktı) sağlar. Tüm satırlar
+`target/debug/build/<pkg>/output` konumuna yazılır. Dahası, `cargo:`yla ön eklenmiş satırlar: doğrudan cargo tarafından yorumlanacaktır ve bu nedenle paketin derlenmesi için parametreleri tanımlamak için kullanılabilir.
 
-For further specification and examples have a read of the
-[Cargo specification][cargo_specification].
+Daha ileri seviyede tanım ve örnekler için 
+[İngilizce Cargo kitabından bir bölüm][cargo_specification].
 
 [specified here]: https://doc.rust-lang.org/cargo/reference/environment-variables.html#environment-variables-cargo-sets-for-build-scripts
 

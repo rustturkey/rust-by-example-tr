@@ -1,6 +1,6 @@
-# Conventions
+# Kurallar
 
-In the previous chapter, we saw the following directory hierarchy:
+Önceki bölümde, aşağıdaki dizin hiyerarşisini görmüştük:
 
 ```txt
 foo
@@ -9,12 +9,9 @@ foo
     └── main.rs
 ```
 
-Suppose that we wanted to have two binaries in the same project, though. What
-then?
+Yine de aynı projede iki ikiliye ihtiyacımız olduğunu varsayalım. Ne olacak?
 
-It turns out that `cargo` supports this. The default binary name is `main`, as
-we saw before, but you can add additional binaries by placing them in a `bin/`
-directory:
+`cargo`nun bunu desteklediğini görürüz. Varsayılan ikili dosya ismi daha önce de gördüğünüz gibi `main`'dir, ama bunları bir `bin/` dizinine yerleştirerek ek ikili dosyalar ekleyebilirsiniz:
 
 ```txt
 foo
@@ -25,13 +22,10 @@ foo
         └── my_other_bin.rs
 ```
 
-To tell `cargo` to compile or run this binary as opposed to the default or other
-binaries, we just pass `cargo` the `--bin my_other_bin` flag, where `my_other_bin`
-is the name of the binary we want to work with.
+`cargo`ya varsayılan veya diğer ikili dosyaların aksine bu ikiliyi derlemesini veya çalıştırmasını söylemek için sadece `cargo`dan `--bin my_other_bin` bayrağını geçiyoruz(pass ediyoruz), burada `my_other_bin` çalışmak istediğimiz ikili dosyanın adıdır.
 
-In addition to extra binaries, `cargo` supports [more features] such as
-benchmarks, tests, and examples.
+Extra binaries(ekstra ikili)'lere ek olarak `cargo` kıyaslama(benchmark) testler ve örnekler gibi [daha fazla] özelliği destekler.
 
-In the next chapter, we will look more closely at tests.
+Gelecek bölümde, test(deneme)lere daha yakından bakacağız.
 
-[more features]: https://doc.rust-lang.org/cargo/guide/project-layout.html
+[daha fazla]: https://doc.rust-lang.org/cargo/guide/project-layout.html

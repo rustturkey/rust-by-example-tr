@@ -1,13 +1,8 @@
-# Testing
+# Test
 
-As we know testing is integral to any piece of software! Rust has first-class
-support for unit and integration testing ([see this
-chapter](https://doc.rust-lang.org/book/ch11-00-testing.html) in
-TRPL).
+Bildiğiniz gibi, test herhangi bir yazılımın ayrılmaz bir parçasıdır! Rust birim ve entegrasyon testi için birinci sınıf desteğe sahiptir ([resmi dokümandaki bu bölüme](https://doc.rust-lang.org/book/ch11-00-testing.html) bakın.
 
-From the testing chapters linked above, we see how to write unit tests and
-integration tests. Organizationally, we can place unit tests in the modules they
-test and integration tests in their own `tests/` directory:
+Yukarıda bağlantılı test bölümlerinden, birim testleri ve entegrasyon testlerinin nasıl yazılacağını görüyoruz. Organizasyonel olarak birim testlerini test ettikleri modüllere ve entegrasyon testlerini kendini `tests/` dizinine yerleştirebiliriz:
 
 ```txt
 foo
@@ -19,15 +14,15 @@ foo
     └── my_other_test.rs
 ```
 
-Each file in `tests` is a separate integration test.
+`tests` dizinindeki tüm dosyalar ayrı bir entegrasyon testidir.
 
-`cargo` naturally provides an easy way to run all of your tests!
+`cargo` yapısından gelen özelliğiyle tüm testlerinizi çalıştırmak için kolay yol sunar!
 
 ```shell
 $ cargo test
 ```
 
-You should see output like this:
+Şöyle bir çıktı alırsınız:
 
 ```shell
 $ cargo test
@@ -44,7 +39,7 @@ test test_foo ... ok
 test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 ```
 
-You can also run tests whose name matches a pattern:
+Ayrıca adı bir desenle(pattern ile) eşleşen testleri de çalıştırabilirsiniz:
 
 ```shell
 $ cargo test test_foo
@@ -63,6 +58,4 @@ test test_foo_bar ... ok
 test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out
 ```
 
-One word of caution: Cargo may run multiple tests concurrently, so make sure
-that they don't race with each other. For example, if they all output to a
-file, you should make them write to different files.
+Bir uyarı: Cargo aynı anda birden fazla test yapabilir, bu yüzden birbirleriyle yarışmadıklarından emin olun. Örneğin, hepsi bir dosyaya çıktı veriyorsa, onları farklı dosyalara yazdırmalısınız.

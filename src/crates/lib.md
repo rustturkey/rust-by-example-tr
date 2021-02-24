@@ -1,6 +1,6 @@
-# Creating a Library
+# Kütüphane Oluşturmak
 
-Let's create a library, and then see how to link it to another crate.
+Bir kütüphane oluşturalım, ve sonra onu başka bir crate'e bağlayacağımızı görelim.
 
 ```rust,ignore
 pub fn public_function() {
@@ -24,9 +24,7 @@ $ ls lib*
 library.rlib
 ```
 
-Libraries get prefixed with "lib", and by default they get named after their
-crate file, but this default name can be overridden by passing
-the `--crate-name` option to `rustc` or by using the [`crate_name`
-attribute][crate-name].
+Kütüphaneler "lib" ön ekiyle başlarlar, ve varsayılan olarak crate dosyalarının adını alırlar, ama bu varsayılan ad,  `--crate-name` seçeneği ile `rustc`'ye iletilerek veya [`crate_name`
+özelliği][crate-name] kullanılarak geçersiz kılınabilir.
 
 [crate-name]: ../attribute/crate.md

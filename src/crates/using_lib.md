@@ -1,16 +1,15 @@
-# Using a Library
+# Bir Kütüphaneyi Kullanmak
 
-To link a crate to this new library you may use `rustc`'s `--extern` flag. All 
-of its items will then be imported under a module named the same as the library.
-This module generally behaves the same way as any other module.
+Bir crate'i yeni bir kütüphaneye bağlamak için `rustc`'nin `--extern` bayrağını kullanabilirsiniz. Tüm öğeler daha sonra kütüphaneyle aynı adda olan bir modülün altına aktarılacaktır
+Bu modül genellikle diğer modüllerle aynı şekilde davranır.
 
 ```rust,ignore
-// extern crate rary; // May be required for Rust 2015 edition or earlier
+// dış crate rary; // Rust 2015 sürümü veya öncesi için gerekli olabilir
 
 fn main() {
     rary::public_function();
 
-    // Error! `private_function` is private
+    // Hata alınır! `private_function` gizlidir
     //rary::private_function();
 
     rary::indirect_access();

@@ -4,7 +4,7 @@ Bir crate'i yeni bir kütüphaneye bağlamak için `rustc`'nin `--extern` bayra�
 Bu modül genellikle diğer modüllerle aynı şekilde davranır.
 
 ```rust,ignore
-// dış crate rary; // Rust 2015 sürümü veya öncesi için gerekli olabilir
+// extern crate rary; // Rust 2015 sürümü veya öncesi için gerekli olabilir
 
 fn main() {
     rary::public_function();

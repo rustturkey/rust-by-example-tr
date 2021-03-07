@@ -1,9 +1,9 @@
 # use
 
-The `use` declaration can be used so manual scoping isn't needed:
+`use` bildirimi kullanıldığında elle kapsam belirlemeye gerek yoktur:
 
 ```rust,editable
-// An attribute to hide warnings for unused code.
+// Kullanılmayan kod için verilen uyarıları gizleyen özellik.
 #![allow(dead_code)]
 
 enum Status {
@@ -17,34 +17,34 @@ enum Work {
 }
 
 fn main() {
-    // Explicitly `use` each name so they are available without
-    // manual scoping.
+    // Aleni `use` bildirimi elle kapsam belirleme olmadan 
+    // kullanılabilmelerini sağlar.
     use crate::Status::{Poor, Rich};
-    // Automatically `use` each name inside `Work`.
+    // Otomatik olarak `Work`ün içindeki her isim `use`lanır.
     use crate::Work::*;
 
-    // Equivalent to `Status::Poor`.
+    // `Status::Poor`a eş değer.
     let status = Poor;
-    // Equivalent to `Work::Civilian`.
+    // `Work::Civilian`a eş değer.
     let work = Civilian;
 
     match status {
-        // Note the lack of scoping because of the explicit `use` above.
+        // Yukarıdaki aleni`use` nedeniyle kapsam açığına dikkat edin.
         Rich => println!("The rich have lots of money!"),
         Poor => println!("The poor have no money..."),
     }
 
     match work {
-        // Note again the lack of scoping.
+        // Kapsam açığını yeniden not edin.
         Civilian => println!("Civilians work!"),
         Soldier  => println!("Soldiers fight!"),
     }
 }
 ```
 
-### See also:
+### Ayrıca bakın:
 
-[`match`][match] and [`use`][use] 
+[`match`][match] ve [`use`][use] 
 
 [use]: ../../mod/use.md
 [match]: ../../flow_control/match.md

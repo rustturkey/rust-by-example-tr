@@ -1,11 +1,11 @@
-# Structures
+# Structure'lar (Yapılar)
 
-There are three types of structures ("structs") that can be created using the
-`struct` keyword:
+Structure'ların üç farklı tipi ("structs")
+`struct` anahtar kelimesini kullanarak oluşturulabilir:
 
-* Tuple structs, which are, basically, named tuples.
-* The classic [C structs][c_struct]
-* Unit structs, which are field-less, are useful for generics.
+* Tuple struct'lar, yani temelde, tuple olarak isimlendirilen yapılar.
+* Klasik[C struct'ları][c_struct]
+* Unit(birim) struct'lar, yani üyesiz olanlar, genelleyiciler için kullanışlıdır.
 
 ```rust,editable
 #[derive(Debug)]
@@ -14,87 +14,83 @@ struct Person {
     age: u8,
 }
 
-// A unit struct
+// Bir unit struct
 struct Unit;
 
-// A tuple struct
+// Bir tuple struct
 struct Pair(i32, f32);
 
-// A struct with two fields
+// İki üyesi olan bir struct
 struct Point {
     x: f32,
     y: f32,
 }
 
-// Structs can be reused as fields of another struct
+// Struct'lar başka bir struct'ın üyeleri olarak yeniden kullanılabilir
 #[allow(dead_code)]
 struct Rectangle {
-    // A rectangle can be specified by where the top left and bottom right
-    // corners are in space.
+    // Sol üst ve sağ alt köşelerin boşlukta olduğu yere göre 
+    // bir dikdörtgen belirtilebilir.
     top_left: Point,
     bottom_right: Point,
 }
 
 fn main() {
-    // Create struct with field init shorthand
+    // Kısa gösterimle üye içeren bir struct oluşturur
     let name = String::from("Peter");
     let age = 27;
     let peter = Person { name, age };
 
-    // Print debug struct
+    // Hata ayıklaması struct'ını yazdırır
     println!("{:?}", peter);
 
 
-    // Instantiate a `Point`
+    // `Point` örneklendirmesi
     let point: Point = Point { x: 10.3, y: 0.4 };
 
-    // Access the fields of the point
+    // point'in üyelerine erişim
     println!("point coordinates: ({}, {})", point.x, point.y);
 
-    // Make a new point by using struct update syntax to use the fields of our
-    // other one
+    // Diğer struct'ın üyelerini kullanmak için struct güncelleme söz dizimini kullanarak yeni bir point yaratır
     let bottom_right = Point { x: 5.2, ..point };
 
-    // `bottom_right.y` will be the same as `point.y` because we used that field
-    // from `point`
+    // `bottom_right.y`, `point.y`  ile aynı olacaktır çünkü
+    // `point`ten üye kullandık
     println!("second point: ({}, {})", bottom_right.x, bottom_right.y);
 
-    // Destructure the point using a `let` binding
+    // `let` bağlamıyla point yok edildi(yıkım/destructure)
     let Point { x: top_edge, y: left_edge } = point;
 
     let _rectangle = Rectangle {
-        // struct instantiation is an expression too
+        // struct örneklendirmesi ifadesi
         top_left: Point { x: left_edge, y: top_edge },
         bottom_right: bottom_right,
     };
 
-    // Instantiate a unit struct
+    // unit struct örneklendirmesi ifadesi
     let _unit = Unit;
 
-    // Instantiate a tuple struct
+    //  tuple struct örneklendirmesi ifadesi
     let pair = Pair(1, 0.1);
 
-    // Access the fields of a tuple struct
+    // tuple struct'ın üyelerine erişim
     println!("pair contains {:?} and {:?}", pair.0, pair.1);
 
-    // Destructure a tuple struct
+    // tuple struct'ın yıkımı
     let Pair(integer, decimal) = pair;
 
     println!("pair contains {:?} and {:?}", integer, decimal);
 }
 ```
 
-### Activity
+### Faaliyet
 
-1. Add a function `rect_area` which calculates the area of a rectangle (try
-   using nested destructuring).
-2. Add a function `square` which takes a `Point` and a `f32` as arguments, and
-   returns a `Rectangle` with its lower left corner on the point, and a width and
-   height corresponding to the `f32`.
+1. Bir dikdörtgenin alanını hesaplayan `rect_area` fonksiyonunu ekleyin (iç içe yıkmayı kullanmayı deneyin).
+2. `Point` ve bir `f32`yi değişken olarak alan `square` fonksiyonunu ekleyin, sol alt köşesi noktada, genişliği ve yüksekliği `f32`ye karşılık gelen bir `Rectangle` (Dikdörtgen) döndürür.
 
-### See also
+### Ayrıca bakın
 
-[`attributes`][attributes], and [destructuring][destructuring]
+[`özellikler`][attributes], ve [yıkım][destructuring]
 
 [attributes]: ../attribute.md
 [c_struct]: https://en.wikipedia.org/wiki/Struct_(C_programming_language)

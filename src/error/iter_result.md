@@ -1,6 +1,6 @@
-# Iterating over `Result`s
+# `Result`s(Sonuçlar) Üzerine Yineleme
 
-An `Iter::map` operation might fail, for example:
+Bir `Iter::map` işlemi başarısız olabilir, örneğin:
 
 ```rust,editable
 fn main() {
@@ -13,11 +13,11 @@ fn main() {
 }
 ```
 
-Let's step through strategies for handling this.
+Bununla başa çıkmak için strateji adımlarına geçelim.
 
-## Ignore the failed items with `filter_map()`
+## `filter_map()` ile Başarısız(fail) Öğeleri Yok Saymak
 
-`filter_map` calls a function and filters out the results that are `None`.
+`filter_map` bir fonksiyon çağırır ve sonuçları `None`(yok) olanları filtreler.
 
 ```rust,editable
 fn main() {
@@ -31,11 +31,9 @@ fn main() {
 }
 ```
 
-## Fail the entire operation with `collect()`
+## `collect()` ile Tüm Başarısız İşlemler
 
-`Result` implements `FromIter` so that a vector of results (`Vec<Result<T, E>>`)
-can be turned into a result with a vector (`Result<Vec<T>, E>`). Once an
-`Result::Err` is found, the iteration will terminate.
+`Result` sonucu (`Result<Vec<T>, E>`) gibi sonuç vektörüne dönüştürülebilen (`Vec<Result<T, E>>`) olan `FromIter`i implemente eder. Bir `Result::Err` bulunduğunda, yineleme sona erecektir.
 
 ```rust,editable
 fn main() {
@@ -48,10 +46,10 @@ fn main() {
 }
 ```
 
-This same technique can be used with `Option`.
+Bu teknik `Option` ile de kullanılabilir.
 
-## Collect all valid values and failures with `partition()`
-
+## `partition()` ile Tüm Geçerli(Valid) Değerleri ve Hataları Toplayın 
+ 
 ```rust,editable
 fn main() {
     let strings = vec!["tofu", "93", "18"];
@@ -64,8 +62,7 @@ fn main() {
 }
 ```
 
-When you look at the results, you'll note that everything is still wrapped in
-`Result`.  A little more boilerplate is needed for this.
+Sonuçlara baktığınızda, her şeyin hala `Result` bölümünde olduğunu fark edeceksiniz. Bunun için biraz daha standart şablona ihtiyaç var.
 
 ```rust,editable
 fn main() {

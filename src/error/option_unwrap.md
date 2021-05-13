@@ -1,33 +1,27 @@
 # `Option` & `unwrap`
 
-In the last example, we showed that we can induce program failure at will.
-We told our program to `panic` if the royal received an inappropriate
-gift - a snake. But what if the royal expected a gift and didn't receive
-one? That case would be just as bad, so it needs to be handled!
+Son örnekte, programı hataya teşvik edebileceğimizi gösterdik.
+Programımıza eğer royal(kraliyet mensubu) uygun olmayan bir hediye alıysa - snake(yılan) `panic` yapmasını söyledik. Ama ya eğer royal bir hediye bekledi ve almadıysa? Bu da aynı derecede kötü olurdu, buna bir el atılması gerek!
 
-We *could* test this against the null string (`""`) as we do with a snake.
-Since we're using Rust, let's instead have the compiler point out cases
-where there's no gift.
+Buna karşı  null string (`""`) testi yapa*biliriz* snake hediyesi için yaptığımız gibi.
+Rust kullanırken, bunun yerine derleyicinin hediyenin olmadığı durumları göstermesini sağlayalım.
 
-An `enum` called `Option<T>` in the `std` library is used when absence is a
-possibility. It manifests itself as one of two "options":
+Bir yokluk olasılığı olduğunda, `std` kütüphanesindeki `Option<T>` isimli bir `enum` kullanılır. Kendisini iki "seçenek"ten biri olarak gösterir:
 
-* `Some(T)`: An element of type `T` was found
-* `None`: No element was found
+* `Some(T)`: `T` tipli bir öğe bulundu
+* `None`: Öğe bulunamadı.
 
-These cases can either be explicitly handled via `match` or implicitly with
-`unwrap`. Implicit handling will either return the inner element or `panic`.
+Bu vakalar, `match` yoluyla ya da örtülü olarak
+`unwrap` yoluyla ele alınabilir. Örtülü ele alma ya içteki öğeyi döndürür ya da `panic`.
 
-Note that it's possible to manually customize `panic` with [expect][expect],
-but `unwrap` otherwise leaves us with a less meaningful output than explicit
-handling. In the following example, explicit handling yields a more
-controlled result while retaining the option to `panic` if desired.
+`panic`i [expect][expect] ile manuel olarak özelleştirmenin bir yolu olmadığını unutmayın,
+ama `unwrap` aksi takdirde bizi açık ele almaya göre daha az anlamlı bir çıktıyla bırakır. Takip eden örnekte, açık ele alma istenirse `panic` seçeneğini korurken daha kontrollü bir sonuç verir.
 
 ```rust,editable,ignore,mdbook-runnable
-// The commoner has seen it all, and can handle any gift well.
-// All gifts are handled explicitly using `match`.
+// Sıradan olan her şeyi gördü ve her hediyeyi iyi bir şekilde değerlendirebilir.
+// Tüm hediyeler açıkça `match` kullanılarak ele alınır.
 fn give_commoner(gift: Option<&str>) {
-    // Specify a course of action for each case.
+    // Her durum için bir eylem planı belirleyin.
     match gift {
         Some("snake") => println!("Yuck! I'm putting this snake back in the forest."),
         Some(inner)   => println!("{}? How nice.", inner),
@@ -35,10 +29,10 @@ fn give_commoner(gift: Option<&str>) {
     }
 }
 
-// Our sheltered royal will `panic` at the sight of snakes.
-// All gifts are handled implicitly using `unwrap`.
+// Korunaklı royal snake hediyelerini gördüğünde `panic` olacaktır.
+// Tüm hediyeler açıkça `unwrap` kullanılarak ele alınır.
 fn give_royal(gift: Option<&str>) {
-    // `unwrap` returns a `panic` when it receives a `None`.
+    // `unwrap` `None` aldığında yani hiçbir şey almadığında `panic` döndürür.
     let inside = gift.unwrap();
     if inside == "snake" { panic!("AAAaaaaa!!!!"); }
 

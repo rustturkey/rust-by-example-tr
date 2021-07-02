@@ -1,36 +1,35 @@
-# Defining an error type
+# Hata Tipini Tanımlamak
 
-Sometimes it simplifies the code to mask all of the different errors with a
-single type of error.  We'll show this with a custom error.
+Bazen, tüm farklı hataların yerine tek bir hata tipini kullanarak temsil etmek(yani diğer hataları maskelemek) kodu basitleştirir. Bunu özel bir hatayla göstereceğiz.
 
-Rust allows us to define our own error types. In general, a "good" error type:
+Rust, kendi hata tiplerimizi tanımlamamızı sağlar. Genel olarak, "iyi" bir hata tipi:
 
-* Represents different errors with the same type
-* Presents nice error messages to the user
-* Is easy to compare with other types
-    - Good: `Err(EmptyVec)`
-    - Bad: `Err("Please use a vector with at least one element".to_owned())`
-* Can hold information about the error
-    - Good: `Err(BadChar(c, position))`
-    - Bad: `Err("+ cannot be used here".to_owned())`
-* Composes well with other errors
+* Farklı hataları aynı tiple temsil eder
+* Kullanıcıya güzel, anlaşılabilir hata mesajları sunar
+* Diğer tiplerle kıyaslanması kolaydır
+    - İyi: `Err(EmptyVec)`
+    - Kötü: `Err("Lütfen en az bir elemanlı bir vektör kullanın".to_owned())`
+* Hata hakkında bilgi tutar
+    - İyi: `Err(BadChar(c, position))`
+    - Kötü: `Err("+ cannot be used here".to_owned())`
+* Diğer hatalarla iyi uyum sağlar
 
 ```rust,editable
 use std::fmt;
 
 type Result<T> = std::result::Result<T, DoubleError>;
 
-// Define our error types. These may be customized for our error handling cases.
-// Now we will be able to write our own errors, defer to an underlying error
-// implementation, or do something in between.
+// Hata türlerimizi tanımlayalım. Bunlar, hata işleme durumlarımız için özelleştirilebilir.
+// Artık, altta yatan bir hata uygulamasını erteleyebileceğimiz veya hata arasında 
+// bir şey yapabileceğimiz kendi hatalarımızı yazabileceğiz
 #[derive(Debug, Clone)]
 struct DoubleError;
 
-// Generation of an error is completely separate from how it is displayed.
-// There's no need to be concerned about cluttering complex logic with the display style.
+// Bir hatanın oluşturulması, görüntülenme biçiminden tamamen farklıdır.
+// Karmaşık mantığın görüntü tarzıyla karıştırılması konusunda endişelenmenize gerek yok.
 //
-// Note that we don't store any extra info about the errors. This means we can't state
-// which string failed to parse without modifying our types to carry that information.
+// Hatalar hakkında fazladan bilgi saklamadığımızı unutmayın. Bu, türlerimizi bu bilgiyi
+// taşıyacak şekilde değiştirmeden hangi dizenin ayrıştırılamayacağını belirtemeyeceğimiz anlamına gelir.
 impl fmt::Display for DoubleError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "invalid first item to double")
@@ -39,11 +38,11 @@ impl fmt::Display for DoubleError {
 
 fn double_first(vec: Vec<&str>) -> Result<i32> {
     vec.first()
-        // Change the error to our new type.
+        // Hatayı yeni tipe değiştirelim.
         .ok_or(DoubleError)
         .and_then(|s| {
             s.parse::<i32>()
-                // Update to the new error type here also.
+                // Burada da yeni hata tipini güncelleyelim.
                 .map_err(|_| DoubleError)
                 .map(|i| 2 * i)
         })

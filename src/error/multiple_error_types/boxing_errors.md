@@ -1,18 +1,14 @@
-# `Box`ing errors
+# `Box`ing Hataları
 
-A way to write simple code while preserving the original errors is to [`Box`][box]
-them.  The drawback is that the underlying error type is only known at runtime and not
-[statically determined][dynamic_dispatch].
+Orijinal hataları korurken basit kod yazmanın bir yolu onları [`Box`][box]'lamaktır.  Dezavantajı, temel alınan hata türünün yalnızca çalışma zamanında bilinmesi ve [statik olarak belirlenmemesidir][dynamic_dispatch].
 
-The stdlib helps in boxing our errors by having `Box` implement conversion from
-any type that implements the `Error` trait into the trait object `Box<Error>`,
-via [`From`][from].
+stdlib, Box'ın [`From`][from] aracılığıyla `Error` niteliğini uygulayan herhangi bir türden `Box<Error>` nitelik nesnesine dönüştürme implementesini sağlayarak hatalarımızı Box'lamaya yardımcı olur.
 
 ```rust,editable
 use std::error;
 use std::fmt;
 
-// Change the alias to `Box<error::Error>`.
+// Takma adı `Box<error::Error>` olarak değiştirin.
 type Result<T> = std::result::Result<T, Box<dyn error::Error>>;
 
 #[derive(Debug, Clone)]
@@ -54,9 +50,9 @@ fn main() {
 }
 ```
 
-### See also:
+### Ayrıca bakın:
 
-[Dynamic dispatch][dynamic_dispatch] and [`Error` trait][error]
+[Dinamik dağıtım][dynamic_dispatch] ve [`Error` niteliği][error]
 
 [box]: https://doc.rust-lang.org/std/boxed/struct.Box.html
 [dynamic_dispatch]: https://doc.rust-lang.org/book/ch17-02-trait-objects.html#trait-objects-perform-dynamic-dispatch

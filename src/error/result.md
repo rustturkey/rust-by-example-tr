@@ -1,25 +1,21 @@
 # `Result`
 
-[`Result`][result] is a richer version of the [`Option`][option] type that
-describes possible *error* instead of possible *absence*.
+[`Result`][result], [`Option`][option] tipinin olası *yokluk* yerine hatayı açıklayan daha zengin versiyonudur.
 
-That is, `Result<T, E>` could have one of two outcomes:
+Yani, `Result<T, E>` iki sonuçtan birine sahip olabilir:
 
-* `Ok(T)`: An element `T` was found
-* `Err(E)`: An error was found with element `E`
+* `Ok(T)`: `T` öğesi bulundu.
+* `Err(E)`:  `E` öğesi ile ilgili bir hata bulundu.
 
-By convention, the expected outcome is `Ok` while the unexpected outcome is `Err`.
+Geleneksel olarak, beklenen sonuç `Ok` iken beklenmedik sonuç `Err`'dir.
 
-Like `Option`, `Result` has many methods associated with it. `unwrap()`, for
-example, either yields the element `T` or `panic`s. For case handling,
-there are many combinators between `Result` and `Option` that overlap.
+`Option` gibi, `Result`'ın da kendisiyle ilişkili birçok metodu vardır. Örneğin `unwrap()`, ya `T` öğesini ya da `panic`'i oluşturur. Durum ele alma işlemi için `Result` ve `Option` örtüşen birçok birleştirici vardır.
 
-In working with Rust, you will likely encounter methods that return the
-`Result` type, such as the [`parse()`][parse] method. It might not always
-be possible to parse a string into the other type, so `parse()` returns a
-`Result` indicating possible failure.
+Rust ile çalışırken, [`parse()`][parse] metodu gibi
+`Result` türünü döndüren metotlarla karşılaşmanız pek mümkündür. Bir string'i diğer bir türe ayrıştırmak her zaman mümkün olmayabilir, bu nedenle `parse()` olası başarısızlığı gösteren bir
+`Result` döndürür.
 
-Let's see what happens when we successfully and unsuccessfully `parse()` a string:
+Hadi başarılı ve başarısız şekilde `parse()` metoduna bakalım:
 
 ```rust,editable,ignore,mdbook-runnable
 fn multiply(first_number_str: &str, second_number_str: &str) -> i32 {
@@ -38,17 +34,13 @@ fn main() {
 }
 ```
 
-In the unsuccessful case, `parse()` leaves us with an error for `unwrap()`
-to `panic` on. Additionally, the `panic` exits our program and provides an
-unpleasant error message.
+Başarısız durumda, `parse()`,  `unwrap()` metodunun `panic` çağırmaması için bizi bir hatayla bırakır. Ek olarak, `panic` programımızdan çıkar ve hoş olmayan bir hata mesajı verir.
 
-To improve the quality of our error message, we should be more specific
-about the return type and consider explicitly handling the error.
+Hata mesajımızın kalitesini artırmak için, dönüş türü hakkında daha spesifik olmalı ve hatayı açıkça ele almalıyız.
 
-## Using `Result` in `main`
+## `Result`'ı `main` içinde kullanmak
 
-The `Result` type can also be the return type of the `main` function if
-specified explicitly. Typically the `main` function will be of the form:
+`Result` türü, açıkça belirtilmişse `main`'in dönüş türü de olabilir. Tipik olarak `main` şu biçimde olacaktır:
 
 ```rust
 fn main() {
@@ -56,10 +48,8 @@ fn main() {
 }
 ```
 
-However `main` is also able to have a return type of `Result`. If an error
-occurs within the `main` function it will return an error code and print a debug
-representation of the error (using the [`Debug`] trait). The following example
-shows such a scenario and touches on aspects covered in [the following section].
+Bununla birlikte, `main`, bir `Result` türüne de sahip olabilir. Eğer bir hata oluşursa, `main` fonksiyonunun içinde bir hata kodu oluşturur ve hatanın debug temsilini yazdırır.
+([`Debug`] niteliğini kullanarak). Takip eden örnekte, böyle bir senaryoyu gösterir ve [takip eden bölümde] ele alınan hususlara değinir.
 
 ```rust,editable
 use std::num::ParseIntError;
@@ -80,4 +70,4 @@ fn main() -> Result<(), ParseIntError> {
 [result]: https://doc.rust-lang.org/std/result/enum.Result.html
 [parse]: https://doc.rust-lang.org/std/primitive.str.html#method.parse
 [`Debug`]: https://doc.rust-lang.org/std/fmt/trait.Debug.html
-[the following section]: result/early_returns.md
+[takip eden bölümde]: result/early_returns.md

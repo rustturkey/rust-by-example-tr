@@ -1,7 +1,6 @@
-# Pulling `Result`s out of `Option`s
+# `Result`(Sonuç)'ları `Option`(Seçenek)'ların dışına çekmek
 
-The most basic way of handling mixed error types is to just embed them in each
-other.
+Karışık hata tiplerini ele almanın en basit yolu, onları birbirine gömmektir.
 
 ```rust,editable
 use std::num::ParseIntError;
@@ -20,16 +19,14 @@ fn main() {
     println!("The first doubled is {:?}", double_first(numbers));
 
     println!("The first doubled is {:?}", double_first(empty));
-    // Error 1: the input vector is empty
+    // Hata 1: girdi vektörü boş
 
     println!("The first doubled is {:?}", double_first(strings));
-    // Error 2: the element doesn't parse to a number
+    // Hata 2: öge bir sayıya ayrıştırılamıyor
 }
 ```
 
-There are times when we'll want to stop processing on errors (like with
-[`?`][enter_question_mark]) but keep going when the `Option` is `None`. A
-couple of combinators come in handy to swap the `Result` and `Option`.
+Hataların üzerinde işlem yapmayı durdurmak isteyeceğimiz zamanlar vardır ([`?`][enter_question_mark] ile gibi) ama `Option` `None`(hiçbiri) olduğunda olduğu gibi devam edin. `Result` ve `Option`'ı değiştirmek için birkaç combinator(birleştirici) kullanışlıdır.
 
 ```rust,editable
 use std::num::ParseIntError;

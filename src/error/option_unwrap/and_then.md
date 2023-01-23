@@ -1,16 +1,13 @@
-# Combinators: `and_then`
+# Combinators (Birleştiriciler): `and_then`
 
-`map()` was described as a chainable way to simplify `match` statements. 
-However, using `map()` on a function that returns an `Option<T>` results 
-in the nested `Option<Option<T>>`. Chaining multiple calls together can 
-then become confusing. That's where another combinator called `and_then()`, 
-known in some languages as flatmap, comes in.
+`map()`, `match` ifadelerini basitleştirmenin zincirlenebilir bir yolu olarak tanımlanır. 
+Ancak, `Option<T>` döndüren bir fonksiyonda `map()` kullanımı 
+iç içe geçmiş `Option<Option<T>>` ile sonlanır. Birden çok çağrıyı birlikte zincirlemek kafa karıştırıcı olabilir. Tam burada, bazı dillerde "flatmap" olarak bilinen `and_then()` adlı başka bir birleştirici devreye girer. 
 
-`and_then()` calls its function input with the wrapped value and returns the result. If the `Option` is `None`, then it returns `None` instead.
+`and_then()` paketlenmiş değer ile fonksiyon girdisini çağırır ve sonucu döndürür. Eğer `Option` değeri `None` ise, onun yerine `None` değerini döndürür.
 
-In the following example, `cookable_v2()` results in an `Option<Food>`. 
-Using `map()` instead of `and_then()` would have given an 
-`Option<Option<Food>>`, which is an invalid type for `eat()`.
+Takip eden örnekte, `cookable_v2()`, `Option<Food>` ile sonuçlanır. 
+`and_then()` yerine `map()` kullanımı `eat()`için geçersiz bir tip olan `Option<Option<Food>>` sonucunu verecektir.
 
 ```rust,editable
 #![allow(dead_code)]
@@ -18,7 +15,7 @@ Using `map()` instead of `and_then()` would have given an
 #[derive(Debug)] enum Food { CordonBleu, Steak, Sushi }
 #[derive(Debug)] enum Day { Monday, Tuesday, Wednesday }
 
-// We don't have the ingredients to make Sushi.
+// Sushi için gereken malzemelerimiz yok.
 fn have_ingredients(food: Food) -> Option<Food> {
     match food {
         Food::Sushi => None,
@@ -26,7 +23,7 @@ fn have_ingredients(food: Food) -> Option<Food> {
     }
 }
 
-// We have the recipe for everything except Cordon Bleu.
+//Cordon Bleu hariç her şeyin tarifi var.
 fn have_recipe(food: Food) -> Option<Food> {
     match food {
         Food::CordonBleu => None,
@@ -34,8 +31,8 @@ fn have_recipe(food: Food) -> Option<Food> {
     }
 }
 
-// To make a dish, we need both the recipe and the ingredients.
-// We can represent the logic with a chain of `match`es:
+// Bir yemeği yapabilmek için hem tarifine hem de gerektirdiği malzemelere sahip olmalıyız.
+// Bu mantığı bir `match `zinciriyle temsil edebiliriz:
 fn cookable_v1(food: Food) -> Option<Food> {
     match have_recipe(food) {
         None       => None,
@@ -46,7 +43,7 @@ fn cookable_v1(food: Food) -> Option<Food> {
     }
 }
 
-// This can conveniently be rewritten more compactly with `and_then()`:
+// Bu, `and_then()` ile rahatlıkla yeniden yazılabilir:
 fn cookable_v2(food: Food) -> Option<Food> {
     have_recipe(food).and_then(have_ingredients)
 }
@@ -67,7 +64,7 @@ fn main() {
 }
 ```
 
-### See also:
+### Ayrıca bakınız:
 
 [closures][closures], [`Option`][option], and [`Option::and_then()`][and_then]
 

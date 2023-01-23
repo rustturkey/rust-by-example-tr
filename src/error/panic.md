@@ -1,8 +1,7 @@
 # `panic`
 
-The simplest error handling mechanism we will see is `panic`. It prints an
-error message, starts unwinding the stack, and usually exits the program.
-Here, we explicitly call `panic` on our error condition:
+Göreceğimiz en basit hata işleme mekanızması `panic`tir. Bir hata mesajı yazdırır, yığını çözmeye başlar ve genellikle programı sonlandırır.
+Aşağıda, hata koşulumuzda açıkça `panic`i çağırıyoruz :
 
 ```rust,editable,ignore,mdbook-runnable
 fn drink(beverage: &str) {

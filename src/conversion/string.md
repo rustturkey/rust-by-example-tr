@@ -1,11 +1,9 @@
-# To and from Strings
+# To and from Strings(Katarlara ve Katarlardan)
 
-## Converting to String
+## String(Katar)'e Dönüşüm
 
-To convert any type to a `String` is as simple as implementing the [`ToString`]
-trait for the type. Rather than doing so directly, you should implement the
-[`fmt::Display`][Display] trait which automagically provides [`ToString`] and
-also allows printing the type as discussed in the section on [`print!`][print].
+Herhangi bir tipi `String`e dönüştürmek gayet basit bir şekilde [`ToString`] niteliğini o tip için implemente etmektir.
+Ama bunu doğrudan yapmak yerine, otomatik olarak [`ToString`] sağlayan ve aynı zamanda [`print!`][print] bölümünde de anlatıldığı gibi tipi yazdırmaya izin veren [`fmt::Display`][Display] niteliğini uygulamalısınız. 
 
 ```rust,editable
 use std::fmt;
@@ -26,17 +24,13 @@ fn main() {
 }
 ```
 
-## Parsing a String
+## String'leri Ayrıştırmak
 
-One of the more common types to convert a string into is a number. The idiomatic
-approach to this is to use the [`parse`] function and either to arrange for
-type inference or to specify the type to parse using the 'turbofish' syntax.
-Both alternatives are shown in the following example.
+Bir string'i dönüştürmek için en sık kullanılan tiplerden biri sayılardır. Bunun deyimsel yaklaşımı; [`parse`] fonksiyonunu kullanmak, tip çıkarımını düzenlemek veya 'turbofish' söz dizimini kullanarak ayrıştırılacak tipi belirlemektir.
+Her iki alternatif de aşağıdaki örnekte gösterilmektedir.
 
-This will convert the string into the type specified as long as the [`FromStr`]
-trait is implemented for that type. This is implemented for numerous types
-within the standard library. To obtain this functionality on a user defined type
-simply implement the [`FromStr`] trait for that type.
+Bu, [`FromStr`] niteliği bu tip için implemente edildiği sürece string'i belirtilen tipe dönüştürecektir.
+Standart kütüphane içindeki çeşitli tipler için implemente edilir. Bu fonksiyonelliği kullanıcı tanımlı bir tip üzerinde elde etmek için, bu tip üzerinde [`FromStr`] niteliğini implemente etmeniz yeterlidir.
 
 ```rust,editable
 fn main() {

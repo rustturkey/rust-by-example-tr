@@ -1,55 +1,52 @@
-# Testcase: linked-list
+# Deneme: linked-list(bağlı liste)
 
-A common way to implement a linked-list is via `enums`:
+`enum`ların yaygın bir kullanımı bağlı liste oluşturmaktır:
 
 ```rust,editable
 use crate::List::*;
 
 enum List {
-    // Cons: Tuple struct that wraps an element and a pointer to the next node
+    // Cons: Bir öğeyi ve bir pointer'ı sonraki düğüme saran Tuple struct'ı
     Cons(u32, Box<List>),
-    // Nil: A node that signifies the end of the linked list
+    // Nil: Bağlı listenin sonunu belirten düğüm
     Nil,
 }
 
-// Methods can be attached to an enum
+// Metotlar bir enum'a eklenebilir
 impl List {
-    // Create an empty list
+    // Boş bir liste oluştur
     fn new() -> List {
-        // `Nil` has type `List`
+        // `Nil`in tipi `List`
         Nil
     }
 
-    // Consume a list, and return the same list with a new element at its front
+    // Bir listeyi yok edin, ardından aynı listeyi önünde yeni bir öğeyle döndürün 
     fn prepend(self, elem: u32) -> List {
-        // `Cons` also has type List
+        // `Cons`ın da tipi List
         Cons(elem, Box::new(self))
     }
 
-    // Return the length of the list
+    // Listenin uzunluğunu döndürün
     fn len(&self) -> u32 {
-        // `self` has to be matched, because the behavior of this method
-        // depends on the variant of `self`
-        // `self` has type `&List`, and `*self` has type `List`, matching on a
-        // concrete type `T` is preferred over a match on a reference `&T`
-        // after Rust 2018 you can use self here and tail (with no ref) below as well,
-        // rust will infer &s and ref tail. 
-        // See https://doc.rust-lang.org/edition-guide/rust-2018/ownership-and-lifetimes/default-match-bindings.html
+        // `self` eşlemelidir, çünkü bu metodun davranışı
+        // `self` değişkenine bağlıdır
+        // `self` `&List` tipine, ve `*self` `List` tipine sahiptir.
+        // `&T` referansındaki eşleme yerine `T` somut tipi tercih edilir
         match *self {
-            // Can't take ownership of the tail, because `self` is borrowed;
-            // instead take a reference to the tail
+            // Kuyruğun sahipliği alınamıyor, çünkü `self` ödünç alındı(borrow);
+            // yerine kuyruğa yeni bir referans alınıyor:
             Cons(_, ref tail) => 1 + tail.len(),
-            // Base Case: An empty list has zero length
+            // Basit durum: Bir boş liste 0 uzunluğa sahiptir.
             Nil => 0
         }
     }
 
-    // Return representation of the list as a (heap allocated) string
+    // Listenin gösterimini (heap allocated(yığın ile ayrılmış)) string olarak döndürür
     fn stringify(&self) -> String {
         match *self {
             Cons(head, ref tail) => {
-                // `format!` is similar to `print!`, but returns a heap
-                // allocated string instead of printing to the console
+                // `format!`, `print!`e benzer, ama konsola basmak yerine heap
+                // allocated string döndürür
                 format!("{}, {}", head, tail.stringify())
             },
             Nil => {
@@ -60,23 +57,23 @@ impl List {
 }
 
 fn main() {
-    // Create an empty linked list
+    // Boş bir bağlı liste oluştur
     let mut list = List::new();
 
-    // Prepend some elements
+    // Başa birkaç eleman ekle
     list = list.prepend(1);
     list = list.prepend(2);
     list = list.prepend(3);
 
-    // Show the final state of the list
+    // Listenin son halini göster
     println!("linked list has length: {}", list.len());
     println!("{}", list.stringify());
 }
 ```
 
-### See also:
+### Ayrıca bakın:
 
-[`Box`][box] and [methods][methods]
+[`Box`][box] ve [metotlar][methods]
 
 [box]: ../../std/box.md
 [methods]: ../../fn/methods.md

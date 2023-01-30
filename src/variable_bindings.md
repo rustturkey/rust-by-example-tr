@@ -1,11 +1,9 @@
 # Variable Bindings
+Rust sabit(statik) yazım tekniği ile tip güvenliği sağlar. Değişken bağlamaları, tanımlandığında tip açıklaması içerebilir. 
+Bununla birlikte, çoğu durumda, derleyici
+değişkenin tipini bağlamdan çıkarabilir ve bu ek açıklama yükünü büyük ölçüde azaltır.
 
-Rust provides type safety via static typing. Variable bindings can be type
-annotated when declared. However, in most cases, the compiler will be able
-to infer the type of the variable from the context, heavily reducing the
-annotation burden.
-
-Values (like literals) can be bound to variables, using the `let` binding.
+Değerler(değiştirilemeyen değerler gibi), `let` bağlama bildiricisi kullanılarak değişkenlere bağlanabilir.
 
 ```rust,editable
 fn main() {
@@ -13,19 +11,18 @@ fn main() {
     let a_boolean = true;
     let unit = ();
 
-    // copy `an_integer` into `copied_integer`
+    // `an_integer` değişkenini `copied_integer` değişkenine kopyalamak
     let copied_integer = an_integer;
 
-    println!("An integer: {:?}", copied_integer);
-    println!("A boolean: {:?}", a_boolean);
-    println!("Meet the unit value: {:?}", unit);
+    println!("Bir tamsayi(integer): {:?}", copied_integer);
+    println!("Bir mantiksal degisken(boolean): {:?}", a_boolean);
+    println!("Birim degerle tanisin: {:?}", unit);
 
-    // The compiler warns about unused variable bindings; these warnings can
-    // be silenced by prefixing the variable name with an underscore
+    // Derleyici, kullanılmayan değişken bağlamları konusunda uyarır
+    // bu uyarılar değişkenin adının önüne bir alt çizgi koyarak susturulabilir
     let _unused_variable = 3u32;
 
     let noisy_unused_variable = 2u32;
-    // FIXME ^ Prefix with an underscore to suppress the warning
-    // Please note that warnings may not be shown in a browser
+    // FIXME ^Uyarıyı bastırmak için alt çizgi içeren bir örnek
 }
 ```

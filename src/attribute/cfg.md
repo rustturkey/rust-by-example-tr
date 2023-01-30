@@ -1,24 +1,22 @@
 # `cfg`
 
-Configuration conditional checks are possible through two different operators:
+Konfigürasyon koşullu kontrolleri iki farklı operatör aracılığıyla mümkündür:
 
-* the `cfg` attribute: `#[cfg(...)]` in attribute position
-* the `cfg!` macro: `cfg!(...)` in boolean expressions
+* `cfg` özelliği: `#[cfg(...)]` özellik konumundayken
+* `cfg!` macro'su: `cfg!(...)` boolean ifadeyken
 
-While the former enables conditional compilation, the latter conditionally
-evaluates to `true` or `false` literals allowing for checks at run-time. Both
-utilize identical argument syntax.
+Birincisi koşullu derlemeyi mümkün kılarken, ikincisi koşullu olarak `true`(doğru) veya `false`(yanlış) değişmez değerlerle çalışma zamanında kontrollere izin verir. Her ikisi de aynı söz dizimini kullanır.
 
 `cfg!`, unlike `#[cfg]`, does not remove any code and only evaluates to true or false. For example, all blocks in an if/else expression need to be valid when `cfg!` is used for the condition, regardless of what `cfg!` is evaluating.
 
 ```rust,editable
-// This function only gets compiled if the target OS is linux
+// Bu fonksiyon yalnızca hedef işletim sistemi linux ise derlenir
 #[cfg(target_os = "linux")]
 fn are_you_on_linux() {
     println!("You are running linux!");
 }
 
-// And this function only gets compiled if the target OS is *not* linux
+// Ve bu fonksiyon yalnızca hedef işletim sistemi linux *değilse* derlenir
 #[cfg(not(target_os = "linux"))]
 fn are_you_on_linux() {
     println!("You are *not* running linux!");
@@ -36,9 +34,9 @@ fn main() {
 }
 ```
 
-### See also:
+### Ayrıca bakın:
 
-[the reference][ref], [`cfg!`][cfg], and [macros][macros].
+[İngilizce referans][ref], [`cfg!`][cfg], ve [macro'lar][macros].
 
 [cfg]: https://doc.rust-lang.org/std/macro.cfg!.html
 [macros]: ../macros.md

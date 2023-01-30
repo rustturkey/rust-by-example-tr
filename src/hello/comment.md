@@ -1,49 +1,48 @@
 # Yorumlar
 
-Any program requires comments, and Rust supports
-a few different varieties:
+Tüm programlar yorum satırlarını kullanırlar, Rust birkaç farklı çeşitte yorum satırlarını destekler:
 
-* *Regular comments* which are ignored by the compiler:
-  * `// Line comments which go to the end of the line.`
-  * `/* Block comments which go to the closing delimiter. */`
-* *Doc comments* which are parsed into HTML library [documentation][docs]:
-  * `/// Generate library docs for the following item.`
-  * `//! Generate library docs for the enclosing item.`
+* Derleyici tarafından görmezden gelinen *standart yorumlar*: 
+   * `// Satırın sonuna kadar süren satır yorumları`
+   * `/* Sınırlayıcıya kadar süren blok halindeki yorumlar. */`
+* *Doc(dokümantasyon) yorumları*  HTML kütüphanesiyle ayrıştırılır
+  [dokümantasyon][docs]:
+   * `/// Takip eden öğe için kütüphane belgeleri oluşturun.`
+   * `//! Çevreleyen öğe için kütüphane belgeleri oluşturun.`
 
 ```rust,editable
 fn main() {
-    // This is an example of a line comment.
-    // There are two slashes at the beginning of the line.
-    // And nothing written inside these will be read by the compiler.
+    // Bu, satır yorumlarının bir örneğidir.
+    // Satırın başında iki eğik çizgi var.
+    // Ve burada yazılmış hiçbir şey derleyici tarafından okunmayacak
 
     // println!("Hello, world!");
 
-    // Run it. See? Now try deleting the two slashes, and run it again.
+    // Çalıştırın. Gördünüz mü? Now try deleting the two slashes, and run it again.
 
-    /*
-     * This is another type of comment, a block comment. In general,
-     * line comments are the recommended comment style. But block comments
-     * are extremely useful for temporarily disabling chunks of code.
-     * /* Block comments can be /* nested, */ */ so it takes only a few
-     * keystrokes to comment out everything in this main() function.
-     * /*/*/* Try it yourself! */*/*/
+    /* 
+     * Bu başka tip bir yorum, blok halinde yorum. Genel olarak,
+     * satır yorumları tavsiye edilen yorum çeşididir. Ama
+     * blok yorumlar kod parçalarını kısa süreli olarak devre dışı bırakmada son derece kullanışlıdır. /* Blok yorumlar /* iç içe olabilir, */ */
+     * bu yüzden bu main() fonksiyonunda her şeyi yorumlamak için
+     * sadece birkaç tuşa basmak yeterli. /*/*/* Deneyin! */*/*/
      */
 
     /*
-    Note: The previous column of `*` was entirely for style. There's
-    no actual need for it.
+    Not: Önceki `*` sütunu tamamen hoş gözükmesi içindi. Aslında o kadarına ihtiyacımız yok.
     */
 
-    // You can manipulate expressions more easily with block comments
-    // than with line comments. Try deleting the comment delimiters
-    // to change the result:
+    // Blok yorumları ile ifadeleri 
+    // satır yorumlarından daha kolay değiştirebilirsiniz.
+    // Sonucu değiştirmek için
+    // Yorum sınırlayıcılarını silmeyi deneyin
     let x = 5 + /* 90 + */ 5;
     println!("Is `x` 10 or 100? x = {}", x);
 }
 ```
 
-### See also:
+### Ayrıca bakın:
 
-[Library documentation][docs]
+[Kütüphane dokümantasyonu][docs]
 
 [docs]: ../meta/doc.md

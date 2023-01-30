@@ -1,24 +1,19 @@
-# `From` and `Into`
+# `From(-den)` ve `Into(biçimine)`
 
-The [`From`] and [`Into`] traits are inherently linked, and this is actually part of
-its implementation. If you are able to convert type A from type B, then it
-should be easy to believe that we should be able to convert type B to type A.
+[`From`] ve [`Into`] doğaları gereği birbirine bağlı iki niteliktir, bu da aslında implementasyonlarının bir parçasıdır. Eğer A tipinden B tipine dönüşüm yapılabiliyorsa, B tipinden A tipine de kolaylıkla dönüşüm yapılabilir.
 
 ## `From`
 
-The [`From`] trait allows for a type to define how to create itself from another
-type, hence providing a very simple mechanism for converting between several
-types. There are numerous implementations of this trait within the standard
-library for conversion of primitive and common types.
+[`From`] niteliği bir tipin kendisini başka tipten nasıl oluşturacağını tanımlamasına izin verir, bu nedenle birkaç tür arasında dönüştürme yapmak için çok basit bir mekanizma sağlar. Temel ve yaygın türlerin dönüştürülmesi için standart kütüphanede bu özelliğin çok sayıda implementasyonu vardır.
 
-For example we can easily convert a `str` into a `String`
+Örneğin `str` tipini kolayca `String` tipine dönüştürebiliriz.
 
 ```rust
 let my_str = "hello";
 let my_string = String::from(my_str);
 ```
 
-We can do similar for defining a conversion for our own type.
+Kendi tipimiz için bir dönüşüm tanımlamak için benzer bir şey yapabiliriz.
 
 ```rust,editable
 use std::convert::From;
@@ -42,13 +37,9 @@ fn main() {
 
 ## `Into`
 
-The [`Into`] trait is simply the reciprocal of the `From` trait. That is, if you
-have implemented the `From` trait for your type, `Into` will call it when
-necessary.
+[`Into`] niteliği aslında basitçe `From` niteliğinin karşılığıdır.`From` niteliğini tanımladığınız tipinize implemente ettiyseniz `Into` gerekli olduğunda onu çağıracaktır.
 
-Using the `Into` trait will typically require specification of the type to
-convert into as the compiler is unable to determine this most of the time.
-However this is a small trade-off considering we get the functionality for free.
+`Into` niteliğini kullanmak genellikle, derleyici bunu çoğu zaman belirleyemediğinden dönüştürülecek tipin belirtilmesini gerektirir.
 
 ```rust,editable
 use std::convert::From;

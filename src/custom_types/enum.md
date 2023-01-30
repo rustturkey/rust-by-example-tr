@@ -1,35 +1,33 @@
-# Enums
+# Enum'lar
 
-The `enum` keyword allows the creation of a type which may be one of a few
-different variants. Any variant which is valid as a `struct` is also valid in
-an `enum`.
+`enum` anahtar kelimesi birkaç farklı çeşitten biri olabilen bir tipin oluşturulmasına izin verir. `struct` olarak geçerli olan herhangi bir değişken aynı zamanda `enum` değeri olarak da geçerlidir.
 
 ```rust,editable
-// Create an `enum` to classify a web event. Note how both
-// names and type information together specify the variant:
+// Bir web olayını sınıflandırmak için bir `enum` oluşturun. Her ikisinin de
+// adlar ve tip bilgilerini birlikte belirttiğini unutmayın:
 // `PageLoad != PageUnload` and `KeyPress(char) != Paste(String)`.
-// Each is different and independent.
+// Her biri bağımsızdır.
 enum WebEvent {
-    // An `enum` variant may either be `unit-like`,
+    // Bir `enum`, `unit-like` (birim benzeri) olabilir,
     PageLoad,
     PageUnload,
-    // like tuple structs,
+    // tuple struct'ları(yapıları) gibi,
     KeyPress(char),
     Paste(String),
-    // or c-like structures.
+    // ya da c gibi yapılar.
     Click { x: i64, y: i64 },
 }
 
-// A function which takes a `WebEvent` enum as an argument and
-// returns nothing.
+// Bağımsız değişken olarak `WebEvent` enum'unu alan
+//  ve hiçbir şey döndürmeyen(return) fonksiyon.
 fn inspect(event: WebEvent) {
     match event {
         WebEvent::PageLoad => println!("page loaded"),
         WebEvent::PageUnload => println!("page unloaded"),
-        // Destructure `c` from inside the `enum` variant.
+        // `enum` içindeki `c` yıkımı .
         WebEvent::KeyPress(c) => println!("pressed '{}'.", c),
         WebEvent::Paste(s) => println!("pasted \"{}\".", s),
-        // Destructure `Click` into `x` and `y`.
+        // `Click`in `x` ve `y`nin içinde yıkımı.
         WebEvent::Click { x, y } => {
             println!("clicked at x={}, y={}.", x, y);
         },
@@ -38,7 +36,7 @@ fn inspect(event: WebEvent) {
 
 fn main() {
     let pressed = WebEvent::KeyPress('x');
-    // `to_owned()` creates an owned `String` from a string slice.
+    // `to_owned()` bir string dilimine sahip olan bir `String` oluşturur.
     let pasted  = WebEvent::Paste("my text".to_owned());
     let click   = WebEvent::Click { x: 20, y: 80 };
     let load    = WebEvent::PageLoad;
@@ -53,11 +51,10 @@ fn main() {
 
 ```
 
-## Type aliases
+## Tip takma adları(Type Aliases)
 
-If you use a type alias, you can refer to each enum variant via its alias.
-This might be useful if the enum's name is too long or too generic, and you
-want to rename it.
+Bir tip takma adı kullanırsanız, her bir enum çeşidine kendisinin takmadı adı ile değinebilirsiniz.
+Bu, enum'un adı çok uzun veya çok genelse ve siz onu yeniden adlandırmak istiyorsanız yararlı olabilir.
 
 ```rust,editable
 enum VeryVerboseEnumOfThingsToDoWithNumbers {
@@ -65,17 +62,17 @@ enum VeryVerboseEnumOfThingsToDoWithNumbers {
     Subtract,
 }
 
-// Creates a type alias
+// Tip takma adı oluşturulur
 type Operations = VeryVerboseEnumOfThingsToDoWithNumbers;
 
 fn main() {
-    // We can refer to each variant via its alias, not its long and inconvenient
-    // name.
+    // Her çeşide uzun veya rahatsız edici şekilde değil, takma adıyla
+    // değinebilirsiniz.
     let x = Operations::Add;
 }
 ```
 
-The most common place you'll see this is in `impl` blocks using the `Self` alias.
+Bunu göreceğiniz en yaygın yer, `Self` takma adını kullanan `impl` bloklarıdır.
 
 ```rust,editable
 enum VeryVerboseEnumOfThingsToDoWithNumbers {
@@ -93,13 +90,12 @@ impl VeryVerboseEnumOfThingsToDoWithNumbers {
 }
 ```
 
-To learn more about enums and type aliases, you can read the
-[stabilization report][aliasreport] from when this feature was stabilized into
-Rust.
+Enum'lar ve tip takma adları hakkında daha fazla bilgi edinmek için, bu özelliğin Rust'ta stabilize edildiği andan itibaren oluşturulan
+[stabilizasyon raporu][aliasreport]nu okuyabilirsiniz.
 
-### See also:
+### Ayrıca bakın:
 
-[`match`][match], [`fn`][fn], and [`String`][str], ["Type alias enum variants" RFC][type_alias_rfc]
+[`match`][match], [`fn`][fn], ve [`String`][str], ["İngilizce tip takma adı enum çeşitlilikleri" RFC'si][type_alias_rfc]
 
 [c_struct]: https://en.wikipedia.org/wiki/Struct_(C_programming_language)
 [match]: ../flow_control/match.md

@@ -1,37 +1,36 @@
-# Attributes
+# Özellikler
 
-An attribute is metadata applied to some module, crate or item. This metadata
-can be used to/for:
+Bir özellik, bazı modüllere, crate(sandık)'e veya öğeye uygulanan meta(üst) veridir. Bu metadata(üst veri)
+şunlar için kullanılır:
 
 <!-- TODO: Link these to their respective examples -->
 
-* [conditional compilation of code][cfg]
-* [set crate name, version and type (binary or library)][crate]
-* disable [lints][lint] (warnings)
-* enable compiler features (macros, glob imports, etc.)
-* link to a foreign library
-* mark functions as unit tests
-* mark functions that will be part of a benchmark
-* [attribute like macros][macros]
+* [koşullu kod derlenmesi][cfg]
+* [crate adını, sürümünü ve tipini (ikili veya kütüphane)][crate]
+* [lintleri] devre dışı bırak [lint]  (uyarılar)
+* derleyici özelliklerini etkinleştir (macro'lar, glob içe aktarımlar vb.)
+* yabancı bir kütüphaneye bağlantı
+* fonksiyonları unit(birim) testi olarak işaretleme
+* fonksiyonları bir karşılaştırmanın parçası olarak işaretleme
 
-When attributes apply to a whole crate, their syntax is `#![crate_attribute]`,
-and when they apply to a module or item, the syntax is `#[item_attribute]`
-(notice the missing bang `!`).
+Özellikler bütün bir crate'e başvurduğunda, söz dizimi `#![crate_attribute]`,
+ve bir modül veya öğeye başvurduğunda, söz dizimi `#[item_attribute]`
+(eksiğin farkına varın `!`).
 
-Attributes can take arguments with different syntaxes:
+Özellikler farklı söz dizimleriyle argümanlar da alabilirler:
 
-* `#[attribute = "value"]`
-* `#[attribute(key = "value")]`
-* `#[attribute(value)]`
+* `#[attribute = "deger"]`
+* `#[attribute(key = "deger")]`
+* `#[attribute(deger)]`
 
-Attributes can have multiple values and can be separated over multiple lines, too:
+Özellikler çoklu değer alabilir ve çoklu satırla ayrılabilirler de:
 
 ```rust,ignore
-#[attribute(value, value2)]
+#[attribute(deger, deger2)]
 
 
-#[attribute(value, value2, value3,
-            value4, value5)]
+#[attribute(deger, deger2, deger3,
+            deger4, deger5)]
 ```
 
 [cfg]: attribute/cfg.md

@@ -1,22 +1,15 @@
-# Unsafe Operations
+# Güvensiz İşlemler
 
-As an introduction to this section, to borrow from [the official docs][unsafe],
-"one should try to minimize the amount of unsafe code in a code base." With that
-in mind, let's get started! Unsafe annotations in Rust are used to bypass
-protections put in place by the compiler; specifically, there are four primary
-things that unsafe is used for:
+Bu bölüme girerken, [resmi İngilizce doküman][unsafe]lardan bir alıntı olarak,
+"Bir kod tabanındaki güvenli olmayan kod miktarı en aza indirilmeye çalışılmalıdır." Aklımıza bunu kazıyarak, hadi başlayalım! Rust'taki güvenli olmayan ek açıklamalar, derleyici tarafından uygulanan korumaları atlatmak için kullanılır; özellikle güvenli olmayan dört temel şey:
 
-* dereferencing raw pointers
-* calling functions or methods which are `unsafe` (including calling a function
-  over FFI, see [a previous chapter](std_misc/ffi.md) of the book) 
-* accessing or modifying static mutable variables
-* implementing unsafe traits
+* açık(veya ham diye ifade edilir) pointer'ı derefere etme(refere ettiği yerden ayırma)
+* `unsafe`(güvensiz) olan fonksiyon veya metotları çağırma (FFI üzerinden bir fonksiyonu çağırmak da buna dahil, [kitabın bir önceki bölümü](std_misc/ffi.md)ne bakın.) 
+* static mutable(değişebilir) değişkenlere erişmek veya bunları değiştirmek
+* unsafe(güvensiz) trait'ler implemente etmek
 
-### Raw Pointers
-Raw pointers `*` and references `&T` function similarly, but references are
-always safe because they are guaranteed to point to valid data due to the
-borrow checker. Dereferencing a raw pointer can only be done through an unsafe
-block.
+### Açık pointer'lar
+Açık pointer'lar `*` ve referanslar `&T` benzer şekilde çalışırlar, ama referanslar her zaman güvenlidir çünkü ödünç alma(borrow) denetleyicisi ile geçerli verilere işaret etmeleri garanti edilir. Açık bir göstericinin referansının kaldırılması sadece güvenli olmayan bir blok aracılığıyla yapılabilir.
 
 ```rust,editable
 fn main() {
@@ -28,11 +21,8 @@ fn main() {
 }
 ```
 
-### Calling Unsafe Functions
-Some functions can be declared as `unsafe`, meaning it is the programmer's
-responsibility to ensure correctness instead of the compiler's. One example
-of this is [`std::slice::from_raw_parts`] which will create a slice given a
-pointer to the first element and a length.
+### Unsafe(Güvensiz) Fonksiyonların Çağrımı
+Bazı fonksiyonlar `unsafe`(güvensiz) olarak bildirilebilir, bu derleyicinin yerine doğruluğu sağlamak programcının sorumluluğundadır. Buna bir örnek: [`std::slice::from_raw_parts`] ilk elemana bir pointer ve bir uzunluk verilen bir hafıza dilimi ayıracaktır.
 
 ```rust,editable
 use std::slice;
@@ -51,10 +41,7 @@ fn main() {
 }
 ```
 
-For `slice::from_raw_parts`, one of the assumptions which *must* be upheld is 
-that the pointer passed in points to valid memory and that the memory pointed to
-is of the correct type. If these invariants aren't upheld then the program's 
-behaviour is undefined and there is no knowing what will happen.
+`slice::from_raw_parts` için, onaylanması gereken varsayımlardan biri, pointer'ın geçerli belleğe geçirilmesi ve işaret edilen belleğin doğru tipte olmasıdır. Bu değişmezler korunmazsa, programın davranışı tanımsızdır ve ne olacağını bilemeyiz.
 
 
 [unsafe]: https://doc.rust-lang.org/book/ch19-01-unsafe-rust.html

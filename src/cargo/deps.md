@@ -1,11 +1,8 @@
-# Dependencies
+# Bağımlılıklar
 
-Most programs have dependencies on some libraries. If you have ever managed
-dependencies by hand, you know how much of a pain this can be. Luckily, the Rust
-ecosystem comes standard with `cargo`! `cargo` can manage dependencies for a
-project.
+Çoğu programın bazı kütüphanelere bağımlılıkları vardır. Hiç bağımlılıkları elle yönettiyseniz, bunun ne kadar acı verici olabileceğini tahmin edersiniz. Şanslıyız ki, Rust ekosistemi `cargo` ile standart olarak geliyor! `cargo` bir proje için bağımlılıkları yönetebilir.
 
-To create a new Rust project,
+Yeni bir Rust projesi oluşturmak için,
 
 ```sh
 # A binary
@@ -15,10 +12,9 @@ cargo new foo
 cargo new --lib bar
 ```
 
-For the rest of this chapter, let's assume we are making a binary, rather than
-a library, but all of the concepts are the same.
+Bu bölümün geri kalanı için, bir kütüphane yerine bir ikili yaptığımızı varsayalım, ama tüm kavramlarımız aynı.
 
-After the above commands, you should see a file hierarchy like this:
+Yukarıdaki komutlardan sonra, aşağıdaki gibi bir dosya hiyerarşisi görmelisiniz:
 
 ```txt
 .
@@ -32,9 +28,8 @@ After the above commands, you should see a file hierarchy like this:
         └── main.rs
 ```
 
-The `main.rs` is the root source file for your new `foo` project -- nothing new there.
-The `Cargo.toml` is the config file for `cargo` for this project. If you
-look inside it, you should see something like this:
+`main.rs` yeni projenizin root(kök/ana) kaynak dosyasıdır -- yeni bir şey yoktur.
+`Cargo.toml` bu proje için `cargo` yapılandırma dosyasıdır (`foo`). İçine bakarsanız, şuna benzer bir şey görürsünüz:
 
 ```toml
 [package]
@@ -45,27 +40,20 @@ authors = ["mark"]
 [dependencies]
 ```
 
-The `name` field under `[package]` determines the name of the project. This is
-used by `crates.io` if you publish the crate (more later). It is also the name
-of the output binary when you compile.
+`name` alanı `[package]` altındaki projenin adını belirler. Crate'i yayınlarsanız `crates.io` tarafından kullanılır(daha sonra anlatılacaktır). Ayrıca, derlediğinizde çıktı ikilisinin de adıdır.
 
-The `version` field is a crate version number using [Semantic
-Versioning](http://semver.org/).
+`version` alanı [Semantic Versioning(Anlamsal Sürümlendirme)](http://semver.org/) kullanan crate sürüm numarasıdır.
 
-The `authors` field is a list of authors used when publishing the crate.
+`authors` alanı, crate'i yayınlarken kullanılan yazarların listesidir.
 
-The `[dependencies]` section lets you add dependencies for your project.
+`[dependencies]` alanı projenize bağımlılık eklemenizi sağlar.
 
-For example, suppose that we want our program to have a great CLI. You can find
-lots of great packages on [crates.io](https://crates.io) (the official Rust
-package registry). One popular choice is [clap](https://crates.io/crates/clap).
-As of this writing, the most recent published version of `clap` is `2.27.1`. To
-add a dependency to our program, we can simply add the following to our
-`Cargo.toml` under `[dependencies]`: `clap = "2.27.1"`. And that's it! You can start using
-`clap` in your program.
+Örneğin, programınızın harika bir komut satırı arayüzüne sahip olmasını istediğinizi varsayalım. [crates.io](https://crates.io) (resmi Rust paket kayıtları)'da bir sürü güzel paket bulabilirsiniz. Popüler bir seçim [clap](https://crates.io/crates/clap)'tir.
+Bu yazı boyunca, `clap`'in en son sürümü `2.27.1`'dir. Programımıza bir bağımlılık eklemek için,
+`Cargo.toml` dosyamızda `[dependencies]`: `clap = "2.27.1"` şeklinde basitçe ekleriz. İşte budur! Artık programınızda
+`clap` kullanmaya başlayabilirsiniz.
 
-`cargo` also supports [other types of dependencies][dependencies]. Here is just
-a small sampling:
+`cargo` [bağımlılıkların özel tipleri][dependencies]. Ufak bir özetleme:
 
 ```toml
 [package]
@@ -79,17 +67,12 @@ rand = { git = "https://github.com/rust-lang-nursery/rand" } # from online repo
 bar = { path = "../bar" } # from a path in the local filesystem
 ```
 
-`cargo` is more than a dependency manager. All of the available
-configuration options are listed in the [format specification][manifest] of
-`Cargo.toml`.
+`cargo` bir bağımlılık yöneticisinden daha fazlasıdır. Mevcut tüm konfigürasyon seçenekleri 
+`Cargo.toml` 'deki [format belirleyici][manifest]de listelenmiştir.
 
-To build our project we can execute `cargo build` anywhere in the project
-directory (including subdirectories!). We can also do `cargo run` to build and
-run. Notice that these commands will resolve all dependencies, download crates
-if needed, and build everything, including your crate. (Note that it only
-rebuilds what it has not already built, similar to `make`).
+Projemizi oluşturmak için, proje dizininde herhangi bir yerde (alt dizinler de dahil!) cargo'yu çalıştırırız. Aynı zamanda `cargo run` diyerek de build edip çalıştırabiliriz. Bu komutların tüm bağımlılıkları çözeceğine, gerekirse crate'leri indireceğine ve crate'iniz de dahil her şeyi oluşturacağını unutmayın! (Çoktan build edilmiş bir şeyi tekrar build ettiğini unutmayın `make`'e benzer şekilde).
 
-Voila! That's all there is to it!
+İşte! Hepsi bu kadar!
 
 
 [manifest]: https://doc.rust-lang.org/cargo/reference/manifest.html

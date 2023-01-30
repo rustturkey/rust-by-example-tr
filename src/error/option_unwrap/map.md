@@ -1,16 +1,9 @@
-# Combinators: `map`
+# Combinators(Birleştiriciler): `map`
 
-`match` is a valid method for handling `Option`s. However, you may 
-eventually find heavy usage tedious, especially with operations only valid 
-with an input. In these cases, [combinators][combinators] can be used to 
-manage control flow in a modular fashion.
+`match`, `Option`ları yönetmek için geçerli bir yöntem. Ancak, özellikle yalnızca bir girdiyle geçerli olan işlemler söz konusu olduğunda yoğun kullanımı sıkıcı bulabilirsiniz. Bu durumlarda, kontrol akışını modüler bir şekilde yönetmek için birleştiriciler([combinators][combinators]) kullanılabilir.
+`Option`, `Some -> Some` `None -> None` haritalaması için `map()` isimli basit birleştirici metoda sahiptir. Çoklu `map()` çağrıları esneklik için zincirlenebilir.
 
-`Option` has a built in method called `map()`, a combinator for the simple 
-mapping of `Some -> Some` and `None -> None`. Multiple `map()` calls can be 
-chained together for even more flexibility.
-
-In the following example, `process()` replaces all functions previous
-to it while staying compact.
+Takip eden örnekte, `process()` sıkıştırılırken önceki tüm fonksiyonların yerine geçer.
 
 ```rust,editable
 #![allow(dead_code)]
@@ -21,8 +14,8 @@ to it while staying compact.
 #[derive(Debug)] struct Chopped(Food);
 #[derive(Debug)] struct Cooked(Food);
 
-// Peeling food. If there isn't any, then return `None`.
-// Otherwise, return the peeled food.
+// Yiyecekleri soyma kısmı. Eğer hiçbir şey yoksa `None` döndürür.
+// Aksi halde, soyulmuş yiyeceği döndürür.
 fn peel(food: Option<Food>) -> Option<Peeled> {
     match food {
         Some(food) => Some(Peeled(food)),
@@ -30,8 +23,8 @@ fn peel(food: Option<Food>) -> Option<Peeled> {
     }
 }
 
-// Chopping food. If there isn't any, then return `None`.
-// Otherwise, return the chopped food.
+// Yiyecekleri doğrama kısmı. Eğer hiçbir şey yoksa `None` döndürür.
+// Aksi halde, doğranmış yiyeceği döndürür.
 fn chop(peeled: Option<Peeled>) -> Option<Chopped> {
     match peeled {
         Some(Peeled(food)) => Some(Chopped(food)),
@@ -39,24 +32,24 @@ fn chop(peeled: Option<Peeled>) -> Option<Chopped> {
     }
 }
 
-// Cooking food. Here, we showcase `map()` instead of `match` for case handling.
+// Yiyecekleri pişirme kısmı. Burada durumu yönetmek için `match` yerine  `map()` kullanıyoruz.
 fn cook(chopped: Option<Chopped>) -> Option<Cooked> {
     chopped.map(|Chopped(food)| Cooked(food))
 }
 
-// A function to peel, chop, and cook food all in sequence.
-// We chain multiple uses of `map()` to simplify the code.
+// Yiyecekleri sırayla soyma, doğrama ve pişirme fonksiyonu.
+// Kodu basitleştirmek için `map()`in birden fazla kullanımını zincirliyoruz. 
 fn process(food: Option<Food>) -> Option<Cooked> {
     food.map(|f| Peeled(f))
         .map(|Peeled(f)| Chopped(f))
         .map(|Chopped(f)| Cooked(f))
 }
 
-// Check whether there's food or not before trying to eat it!
+// Yemeye çalışmadan önce yiyecek olup olmadığını kontrol edin.
 fn eat(food: Option<Cooked>) {
     match food {
-        Some(food) => println!("Mmm. I love {:?}", food),
-        None       => println!("Oh no! It wasn't edible."),
+        Some(food) => println!("Mmm. {:?} güzeldi, sevdim.", food),
+        None       => println!("Olamaz! Bu yenilebilir değil."),
     }
 }
 
@@ -67,7 +60,7 @@ fn main() {
 
     let cooked_apple = cook(chop(peel(apple)));
     let cooked_carrot = cook(chop(peel(carrot)));
-    // Let's try the simpler looking `process()` now.
+    // `Şimdi daha basit görünen process()`e bir bakış atalım .
     let cooked_potato = process(potato);
 
     eat(cooked_apple);
@@ -76,7 +69,7 @@ fn main() {
 }
 ```
 
-### See also:
+### Ayrıca bakın:
 
 [closures][closures], [`Option`][option], [`Option::map()`][map]
 

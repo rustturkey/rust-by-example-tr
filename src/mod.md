@@ -1,8 +1,6 @@
-# Modules
+# Modüller
 
-Rust provides a powerful module system that can be used to hierarchically split
-code in logical units (modules), and manage visibility (public/private) between
-them.
+Rust kodu hiyerarşik olarak mantıksal birimlere(modüller) ayıran güçlü modül sistemi sağlar, ve tabii ki beraberinde görünürlük yönetimi(public/private)(genel/özel) de sağlar.
 
-A module is a collection of items: functions, structs, traits, `impl` blocks,
-and even other modules.
+Bir modül şu öğelerin bütünüdür: fonksiyonlar, struct'lar(yapı), nitelikler, `impl` blokları,
+ve diğer modüller.

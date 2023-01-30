@@ -1,45 +1,42 @@
-# Hello World
+# Hello World(Merhaba Dünya)
 
-This is the source code of the traditional Hello World program.
+Geleneksel Hello World(Merhaba Dünya) programının kaynak kodu:
 
 ```rust,editable
-// This is a comment, and is ignored by the compiler.
-// You can test this code by clicking the "Run" button over there ->
-// or if you prefer to use your keyboard, you can use the "Ctrl + Enter"
-// shortcut.
+// Bu bir yorum satırı, derleyici tarafından yok sayılır
+// "Run" butonuna tıklayarak bu kodu test edebilirsiniz ->
+// ya da klavyenizi kullanmayı tercih ederseniz, "Ctrl + Enter" kısayolunu kullanabilirsiniz
 
-// This code is editable, feel free to hack it!
-// You can always return to the original code by clicking the "Reset" button ->
+// Bu kod düzenlenebilir, kırmaktan çekinmeyin!
+// Her zaman orijinal koda "Reset" butonuna tıklayarak dönebilirsiniz ->
 
-// This is the main function.
+// Bu ana fonksiyondur
 fn main() {
-    // Statements here are executed when the compiled binary is called.
+    // Derlenen ikili(compiled binary) çağrıldığında ifadeler çalıştırılır 
 
-    // Print text to the console.
+    // Yazıyı konsola yazdır
     println!("Hello World!");
 }
 ```
 
-`println!` is a [*macro*][macros] that prints text to the
-console.
+`println!` yazıları konsola yazdıran bir [*macro*][macros] 'dur.
 
-A binary can be generated using the Rust compiler: `rustc`.
+Bir ikili(binary) `rustc` Rust derleyicisi kullanarak oluşturulabilir.
 
 ```bash
 $ rustc hello.rs
 ```
 
-`rustc` will produce a `hello` binary that can be executed.
+`rustc` , çalıştırıldığında `hello` ikili(binary)si oluşturacaktır.
 
 ```bash
 $ ./hello
 Hello World!
 ```
 
-### Activity
+### Aktivite
 
-Click 'Run' above to see the expected output. Next, add a new
-line with a second `println!` macro so that the output shows:
+Beklenen çıktıyı görmek için 'Run' a tıklayın. Ardından, ikinci bir `println!` macro'su ekleyin ve çıktı şöyle görünecektir:
 
 ```text
 Hello World!

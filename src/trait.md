@@ -1,25 +1,24 @@
-# Traits
+# Nitelik
 
-A `trait` is a collection of methods defined for an unknown type:
-`Self`. They can access other methods declared in the same trait.
+Nitelik yani `trait` bilinmeyen bir tip için tanımlanan metotlar koleksiyonudur:
+`Self` (Kendi). Aynı nitelikte bildirilen diğer metotlara erişebilirler. 
 
-Traits can be implemented for any data type. In the example below,
-we define `Animal`, a group of methods. The `Animal` `trait` is 
-then implemented for the `Sheep` data type, allowing the use of 
-methods from `Animal` with a `Sheep`.
+Nitelikler herhangi bir veri tipi için uygulanabilirler. Aşağıdaki örnekte,
+bir metot grubu olan `Animal`ı tanımlıyoruz. `Animal` `trait`(nitelik)i daha sonra 
+`Sheep` veri tipi için uygulanarak `Animal` ve `Sheep`ten metotların kullanılmasına izin verir.
 
 ```rust,editable
 struct Sheep { naked: bool, name: &'static str }
 
 trait Animal {
-    // Associated function signature; `Self` refers to the implementor type.
+    // Static metot imzası; `Self` implemente edici ifade eder.
     fn new(name: &'static str) -> Self;
 
-    // Method signatures; these will return a string.
+    // Örnek metot imzaları; bunlar bir string döndürecektir.
     fn name(&self) -> &'static str;
     fn noise(&self) -> &'static str;
 
-    // Traits can provide default method definitions.
+    // Nitelikler, varsayılan metot tanımlamaları sağlayabilir.
     fn talk(&self) {
         println!("{} says {}", self.name(), self.noise());
     }
@@ -32,7 +31,7 @@ impl Sheep {
 
     fn shear(&mut self) {
         if self.is_naked() {
-            // Implementor methods can use the implementor's trait methods.
+            // İmplemente edici metotları, implemente edicinin nitelik metotlarını kullanabilir
             println!("{} is already naked...", self.name());
         } else {
             println!("{} gets a haircut!", self.name);
@@ -42,9 +41,9 @@ impl Sheep {
     }
 }
 
-// Implement the `Animal` trait for `Sheep`.
+// `Animal` niteliğini `Sheep` için implemente edin.
 impl Animal for Sheep {
-    // `Self` is the implementor type: `Sheep`.
+    // `Self`, implemente edici tipi: `Sheep`.
     fn new(name: &'static str) -> Sheep {
         Sheep { name: name, naked: false }
     }
@@ -61,17 +60,17 @@ impl Animal for Sheep {
         }
     }
     
-    // Default trait methods can be overridden.
+    // Varsayılan nitelik metotları geçersiz kılınabilir.
     fn talk(&self) {
-        // For example, we can add some quiet contemplation.
+        // Örneğin, biraz sessiz düşünme durağı ekleyebiliriz.
         println!("{} pauses briefly... {}", self.name, self.noise());
     }
 }
 
 fn main() {
-    // Type annotation is necessary in this case.
+    // Bu durumda, tip açıklaması gereklidir.
     let mut dolly: Sheep = Animal::new("Dolly");
-    // TODO ^ Try removing the type annotations.
+    // YAPILACAK ^ Tip ek açıklamalarını kaldırmayı deneyin.
 
     dolly.talk();
     dolly.shear();

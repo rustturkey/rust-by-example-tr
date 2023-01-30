@@ -1,4 +1,4 @@
-# Comments
+# Yorumlar
 
 Any program requires comments, and Rust supports
 a few different varieties:

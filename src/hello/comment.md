@@ -1,4 +1,4 @@
-# Comments
+# Yorumlar
 
 Tüm programlar yorum satırlarını kullanırlar, Rust birkaç farklı çeşitte yorum satırlarını destekler:
 

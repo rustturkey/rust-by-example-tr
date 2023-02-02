@@ -1,6 +1,6 @@
 # Formatted print
 
-Printing is handled by a series of [`macros`][macros] defined in [`std::fmt`][fmt]
+Printing is handled by a series of [`makrolar`][macros] defined in [`std::fmt`][fmt]
 some of which include:
 
 * `format!`: write formatted text to [`String`][string]

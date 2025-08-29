@@ -1,89 +1,80 @@
-# Formatted print
+# Formatlı Yazdırma
 
-Printing is handled by a series of [`macros`][macros] defined in [`std::fmt`][fmt]
-some of which include:
+Yazdırma[`std::fmt`][fmt]'de tanımlanan bir dizi [`macro'lar`][macros] tarafından yönetilen bir işlemdir; bunlardan bazıları:
 
-* `format!`: write formatted text to [`String`][string]
-* `print!`: same as `format!` but the text is printed to the console (io::stdout).
-* `println!`: same as `print!` but a newline is appended.
-* `eprint!`: same as `format!` but the text is printed to the standard error (io::stderr).
-* `eprintln!`: same as `eprint!`but a newline is appended.
+* `format!`: Biçimlendirilmiş metni [`String`][string] 'e yazar
+* `print!`: `format!` ile aynıdır, ancak metin konsola  yazdırılır. (io::stdout).
+* `println!`: `print!` ile aynıdır, ancak yeni bir satır eklenir.
+* `eprint!`: `format!` ile aynıdır, ancak metin standart hataya yazdırılır. (io::stderr).
+* `eprintln!`: `eprint!`ile aynıdır, ancak yeni bir satır eklenir.
 
-All parse text in the same fashion. As a plus, Rust checks formatting
-correctness at compile time.
+Tüm metinler aynı şekilde ayrıştırılır. Rust, derleme zamanında biçimlendirme(formatlama) doğruluğunu kontrol eder.
+
 
 ```rust,editable,ignore,mdbook-runnable
 fn main() {
-    // In general, the `{}` will be automatically replaced with any
-    // arguments. These will be stringified.
-    println!("{} days", 31);
+    // Genel olarak, `{}` otomatik olarak herhangi bir
+    // argümanla yer değiştirecektir. Bunlar dize(String)leştirilecektir.
+    println!("{} gunler", 31);
 
-    // Without a suffix, 31 becomes an i32. You can change what type 31 is
-    // by providing a suffix. The number 31i64 for example has the type i64.
+    // Son ek olmadan 31, i32 olacaktır, 31'in türünü bir son ek ekleyerek
+    // değiştirebilirsiniz. Örn. 31i64 sayısının türü i64'tür.
 
-    // There are various optional patterns this works with. Positional
-    // arguments can be used.
-    println!("{0}, this is {1}. {1}, this is {0}", "Alice", "Bob");
+    // Bunun işe yaradığı çeşitli isteğe bağlı desenler vardır. 
+    // Konumsal argümanlar kullanılabilir:
+    println!("{0}, bu {1}. {1}, bu {0}", "Ali", "Veli");
 
-    // As can named arguments.
+    // Adlandırılmış argümanlar olarak da...
     println!("{subject} {verb} {object}",
-             object="the lazy dog",
-             subject="the quick brown fox",
-             verb="jumps over");
+             object="tembel kopek",
+             subject="hizli kosan tilki",
+             verb="ziplar");
 
-    // Special formatting can be specified after a `:`.
-    println!("{} of {:b} people know binary, the other half doesn't", 1, 2);
+    // Özel biçimlendirme `:` işaretinden sonra belirtilebilir.
+    println!("{:b} kisiden {} tanesi binary(ikili) sistemi bilir, yarisi bilmez", 1, 2);
 
-    // You can right-align text with a specified width. This will output
-    // "     1". 5 white spaces and a "1".
+    // Metni belirtilen genişlikte sağa hizalayabilirsiniz. Bu takip eden çıktıyı verecektir:
+    // "     1". 5 boşluk ve bir adet "1".
     println!("{number:>width$}", number=1, width=6);
 
-    // You can pad numbers with extra zeroes. This will output "000001".
+    // Sayıları ekstra sıfırla doldurabilirsiniz. Bu "000001" çıktısını verecektir.
     println!("{number:>0width$}", number=1, width=6);
 
-    // Rust even checks to make sure the correct number of arguments are
-    // used.
-    println!("My name is {0}, {1} {0}", "Bond");
-    // FIXME ^ Add the missing argument: "James"
+    // Rust doğru sayıda argümanın kullanıldığından emin olmak için de
+    // kontrol edecektir.
+    println!("Benim adim, {0}, {1} {0}", "Bond");
+    // ÇÖZMELİSİNİZ! ^ Eksik argümanı ekleyin: "James"
 
-    // Create a structure named `Structure` which contains an `i32`.
+    // `i32` içeren `Structure` isimli bir structure(yapı) oluşturun.
     #[allow(dead_code)]
     struct Structure(i32);
 
-    // However, custom types such as this structure require more complicated
-    // handling. This will not work.
-    println!("This struct `{}` won't print...", Structure(3));
-    // FIXME ^ Comment out this line.
+    // Ancak, bu yapı gibi özel tipler daha karmaşık bir işlem gerektirir.
+    // örn. Bu bir işe yaramayacaktır:
+    println!("Bu struct `{}` yazdirilmayacak...", Structure(3));
+    // ÇÖZMELİSİNİZ! ^ Bu satırı yoruma alın.
 }
 ```
 
-[`std::fmt`][fmt] contains many [`traits`][traits] which govern the display
-of text. The base form of two important ones are listed below:
+[`std::fmt`][fmt] metnin görüntülenmesini yöneten birçok [`trait`][traits] yani nitelik içerir. 
+Bunlardan ikisinin temel biçimi aşağıda listelenmiştir:
 
-* `fmt::Debug`: Uses the `{:?}` marker. Format text for debugging purposes.
-* `fmt::Display`: Uses the `{}` marker. Format text in a more elegant, user
-friendly fashion.
+* `fmt::Debug`: `{:?}` işaretini kullanır. Hata ayıklama amacıyla metni biçimlendirir.
+* `fmt::Display`: `{}` işaretini kullanır. Metni daha zarif ve kullanıcı dostu bir şekilde biçimlendirir.
 
-Here, we used `fmt::Display` because the std library provides implementations
-for these types. To print text for custom types, more steps are required.
+Burada, std kütüphanesi bu türler için implementasyonlar sağladığından`fmt::Display` kullandık. Özel türlerde metin yazdırmak için daha fazla adım gerekecektir.
 
-Implementing the `fmt::Display` trait automatically implements the
-[`ToString`] trait which allows us to [convert] the type to [`String`][string].
+`fmt::Display` niteliğinin implemente edilmesi, otomatik olarak türünüzü [`String`][string] türüne [dönüştürme]mize olanak tanıyan [`ToString`] niteliğini de implemente eder.
 
-### Activities
+### Etkinlikler
 
- * Fix the two issues in the above code (see FIXME) so that it runs without
-   error.
- * Add a `println!` macro that prints: `Pi is roughly 3.142` by controlling
-   the number of decimal places shown. For the purposes of this exercise,
-   use `let pi = 3.141592` as an estimate for pi. (Hint: you may need to
-   check the [`std::fmt`][fmt] documentation for setting the number of
-   decimals to display)
+ * Yukarıdaki koddaki iki sorunu (bkz. ÇÖZMELİSİNİZ!) düzeltmek, böylece hatasız çalışacaklar.
+ * Gösterilen ondalık basamaklı sayıyı kontrol ederek `Pi is roughly 3.142` yazdıran bir `println!` macro'su ekleyin. Bu alıştırmada, pi için tahmin olarak `let pi = 3.141592` kullanın. (İpucu: Görüntülenecek ondalık basamaklı sayıyı ayarlamak için [`std::fmt`][fmt] belgelerini kontrol edebilirsiniz.)
 
-### See also:
+### Ayrıca bakın:
 
 [`std::fmt`][fmt], [`macros`][macros], [`struct`][structs],
-and [`traits`][traits]
+ve [`traits`][traits]
 
 [fmt]: https://doc.rust-lang.org/std/fmt/
 [macros]: ../macros.md
